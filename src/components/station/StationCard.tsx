@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { Play, Pause, Heart, Radio, MapPin } from 'lucide-react';
 import type { Station } from '@/types/station';
 import { usePlayer } from '@/context/PlayerContext';
-import styles from './StationCard.module.css';
 
 interface StationCardProps {
   station: Station;
@@ -17,77 +16,82 @@ export function StationCard({ station, isFavorite, onToggleFavorite }: StationCa
   const tags = station.tags ? station.tags.split(',').filter(Boolean).slice(0, 3) : [];
 
   return (
-    <div className={`${styles.card} ${isActive ? styles.active : ''}`}>
-      <div className={styles.artwork} onClick={() => togglePlay(station)}>
-        {station.favicon ? (
-          <img
-            src={station.favicon}
-            alt=""
-            onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
-          />
-        ) : null}
-        <div className={styles.fallback}>
-          <Radio size={24} />
+    <div className={`card card-side card-sm bg-base-200 group relative ${isActive ? 'ring-1 ring-primary bg-primary/10' : ''}`}>
+      <figure
+        className="w-12 h-12 m-2 shrink-0 cursor-pointer relative rounded-lg overflow-hidden"
+        onClick={() => togglePlay(station)}
+      >
+        <div className="w-full h-full bg-base-300 flex items-center justify-center text-base-content/30">
+          {station.favicon ? (
+            <img
+              src={station.favicon}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
+          ) : null}
+          <Radio size={20} />
         </div>
-        <div className={styles.playOverlay}>
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           {isActive && isLoading ? (
-            <div className={styles.loadingDot} />
+            <span className="loading loading-spinner loading-sm text-white" />
           ) : isActive && isPlaying ? (
-            <Pause size={22} fill="white" />
+            <Pause size={20} fill="white" className="text-white" />
           ) : (
-            <Play size={22} fill="white" />
+            <Play size={20} fill="white" className="text-white" />
           )}
         </div>
-      </div>
+      </figure>
 
-      <div className={styles.info}>
-        <h4 className={styles.name} title={station.name}>
+      <div className="card-body p-2 gap-0.5 min-w-0">
+        <h4 className="font-medium text-sm truncate" title={station.name}>
           {station.name}
         </h4>
-        <div className={styles.meta}>
+        <div className="flex items-center gap-1 text-xs text-base-content/60">
           {station.countrycode && (
-            <span className={styles.country}>
+            <span className="flex items-center gap-1 truncate">
               <img
-                className={styles.countryFlag}
                 src={`https://flagcdn.com/w20/${station.countrycode.toLowerCase()}.png`}
                 alt=""
-                width={16}
-                height={12}
+                width={14}
+                height={10}
+                className="rounded-sm inline-block"
               />
               {station.country}
               {station.state && ` · ${station.state}`}
             </span>
           )}
           {station.bitrate > 0 && (
-            <span className={styles.bitrate}>{station.bitrate} kbps</span>
+            <span className="text-base-content/40">{station.bitrate} kbps</span>
           )}
         </div>
         {tags.length > 0 && (
-          <div className={styles.tags}>
+          <div className="flex gap-1 mt-0.5">
             {tags.map(tag => (
-              <span key={tag} className={styles.tag}>{tag.trim()}</span>
+              <span key={tag} className="badge badge-sm badge-ghost">{tag.trim()}</span>
             ))}
           </div>
         )}
       </div>
 
-      {station.geo_lat !== null && station.geo_long !== null && (
+      <div className="flex flex-col items-center justify-center gap-0.5 pr-2">
+        {station.geo_lat !== null && station.geo_long !== null && (
+          <button
+            className="btn btn-ghost btn-circle btn-xs"
+            onClick={() => navigate(`/map?lat=${station.geo_lat}&lng=${station.geo_long}&zoom=14&station=${station.stationuuid}`)}
+            title="Locate on map"
+          >
+            <MapPin size={14} />
+          </button>
+        )}
         <button
-          className={styles.locateBtn}
-          onClick={() => navigate(`/map?lat=${station.geo_lat}&lng=${station.geo_long}&zoom=14&station=${station.stationuuid}`)}
-          title="Locate on map"
+          className={`btn btn-ghost btn-circle btn-xs ${isFavorite ? 'text-primary' : ''}`}
+          onClick={() => onToggleFavorite(station)}
+          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         >
-          <MapPin size={16} />
+          <Heart size={14} fill={isFavorite ? 'currentColor' : 'none'} />
         </button>
-      )}
-
-      <button
-        className={`${styles.favBtn} ${isFavorite ? styles.favActive : ''}`}
-        onClick={() => onToggleFavorite(station)}
-        title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-      >
-        <Heart size={16} fill={isFavorite ? 'currentColor' : 'none'} />
-      </button>
+      </div>
     </div>
   );
 }

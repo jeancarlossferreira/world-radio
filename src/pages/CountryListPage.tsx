@@ -6,7 +6,6 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ErrorMessage } from '@/components/ui/ErrorMessage';
 import { useCountries } from '@/hooks/useCountries';
 import { COUNTRY_CONTINENT, COUNTRY_LANGUAGE, CONTINENTS } from '@/lib/country-data';
-import styles from './CountryListPage.module.css';
 
 type SortKey = 'name' | 'stations' | 'language' | 'continent';
 
@@ -53,21 +52,23 @@ export function CountryListPage() {
   }, [countries, filter, sortBy, continentFilter]);
 
   return (
-    <div className={styles.page}>
-      <h1 className={styles.title}>
+    <div className="p-6 max-w-6xl mx-auto">
+      <h1 className="text-2xl font-bold flex items-center gap-2">
         <Globe size={24} />
         Browse by Country
       </h1>
-      <p className={styles.subtitle}>{countries.length} countries with radio stations</p>
+      <p className="text-sm text-base-content/60 mt-1 mb-5">{countries.length} countries with radio stations</p>
 
-      <div className={styles.controls}>
-        <div className={styles.search}>
+      <div className="flex flex-wrap items-end gap-3 mb-5">
+        <div className="flex-1 min-w-[200px]">
           <SearchBar value={filter} onChange={setFilter} placeholder="Filter countries..." />
         </div>
-        <div className={styles.sortGroup}>
-          <label className={styles.sortLabel}>Sort by</label>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text text-xs">Sort by</span>
+          </label>
           <select
-            className={styles.select}
+            className="select select-bordered select-sm"
             value={sortBy}
             onChange={e => setSortBy(e.target.value as SortKey)}
           >
@@ -77,10 +78,12 @@ export function CountryListPage() {
             <option value="continent">Continent</option>
           </select>
         </div>
-        <div className={styles.sortGroup}>
-          <label className={styles.sortLabel}>Continent</label>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text text-xs">Continent</span>
+          </label>
           <select
-            className={styles.select}
+            className="select select-bordered select-sm"
             value={continentFilter}
             onChange={e => setContinentFilter(e.target.value)}
           >

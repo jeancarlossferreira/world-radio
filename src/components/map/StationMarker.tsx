@@ -59,29 +59,29 @@ export function StationMarker({ station, onSelect, isFavorite, onToggleFavorite 
       icon={isEstimated ? estimatedMarkerIcon : markerIcon}
     >
       <Popup className={styles.popup}>
-        <div className={styles.content}>
-          <h4 className={styles.name}>{station.name}</h4>
-          <p className={styles.meta}>
+        <div className="py-1 min-w-[160px]">
+          <h4 className="text-sm font-semibold mb-1">{station.name}</h4>
+          <p className="text-xs opacity-70 mb-2">
             {station.country}
             {station.state && ` · ${station.state}`}
             {station.bitrate > 0 && ` · ${station.bitrate} kbps`}
           </p>
           {isEstimated && (
-            <p className={styles.estimated}>Approximate location</p>
+            <p className="text-xs italic mb-1.5" style={{ color: '#e89020' }}>Approximate location</p>
           )}
-          <div className={styles.actions}>
+          <div className="flex gap-1.5 items-center">
             <button
-              className={styles.playBtn}
+              className="btn btn-primary btn-xs gap-1"
               onClick={() => {
                 togglePlay(station);
                 onSelect?.(station);
               }}
             >
-              <Play size={14} fill="white" />
+              <Play size={12} fill="currentColor" />
               {isActive && isPlaying ? 'Pause' : 'Play'}
             </button>
             <button
-              className={`${styles.favBtn} ${isFavorite ? styles.favActive : ''}`}
+              className={`btn btn-ghost btn-xs btn-circle ${isFavorite ? 'text-primary' : ''}`}
               onClick={() => onToggleFavorite(station)}
             >
               <Heart size={14} fill={isFavorite ? 'currentColor' : 'none'} />

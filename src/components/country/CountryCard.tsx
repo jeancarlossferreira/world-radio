@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import type { Country } from '@/types/api';
 import { COUNTRY_CONTINENT, COUNTRY_LANGUAGE } from '@/lib/country-data';
-import styles from './CountryCard.module.css';
 
 export function CountryCard({ country }: { country: Country }) {
   const navigate = useNavigate();
@@ -17,10 +16,13 @@ export function CountryCard({ country }: { country: Country }) {
   };
 
   return (
-    <Link to={`/countries/${country.iso_3166_1}`} className={styles.card}>
+    <Link
+      to={`/countries/${country.iso_3166_1}`}
+      className="flex items-center gap-3 p-3 bg-base-200 rounded-box hover:bg-base-300 transition"
+    >
       {code && code.length === 2 ? (
         <img
-          className={styles.flag}
+          className="rounded-sm"
           src={`https://flagcdn.com/w40/${code}.png`}
           srcSet={`https://flagcdn.com/w80/${code}.png 2x`}
           alt={country.name}
@@ -28,17 +30,17 @@ export function CountryCard({ country }: { country: Country }) {
           height={24}
         />
       ) : (
-        <span className={styles.flagPlaceholder}>--</span>
+        <span className="w-8 h-6 bg-base-300 rounded-sm flex items-center justify-center text-xs text-base-content/40">--</span>
       )}
-      <div className={styles.info}>
-        <span className={styles.name}>{country.name}</span>
-        <span className={styles.detail}>
+      <div className="flex-1 min-w-0">
+        <span className="font-medium text-sm block truncate">{country.name}</span>
+        <span className="text-xs text-base-content/60 block truncate">
           {country.stationcount.toLocaleString()} stations
           {language && ` · ${language}`}
           {continent && ` · ${continent}`}
         </span>
       </div>
-      <button className={styles.locateBtn} onClick={handleLocate} title="Locate on map">
+      <button className="btn btn-ghost btn-circle btn-xs" onClick={handleLocate} title="Locate on map">
         <MapPin size={16} />
       </button>
     </Link>

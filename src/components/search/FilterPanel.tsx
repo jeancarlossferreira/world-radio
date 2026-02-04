@@ -1,6 +1,5 @@
 import { SlidersHorizontal } from 'lucide-react';
 import { useState } from 'react';
-import styles from './FilterPanel.module.css';
 
 interface FilterPanelProps {
   tag: string;
@@ -20,39 +19,45 @@ export function FilterPanel({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className={styles.panel}>
-      <button className={styles.toggle} onClick={() => setExpanded(!expanded)}>
+    <div className="mt-3">
+      <button className="btn btn-ghost btn-sm gap-2" onClick={() => setExpanded(!expanded)}>
         <SlidersHorizontal size={16} />
         Filters
       </button>
       {expanded && (
-        <div className={styles.filters}>
-          <div className={styles.field}>
-            <label>Genre / Tag</label>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-xs uppercase">Genre / Tag</span>
+            </label>
             <input
               type="text"
               value={tag}
               onChange={e => onTagChange(e.target.value)}
               placeholder="e.g. rock, jazz"
-              className={styles.input}
+              className="input input-bordered input-sm"
             />
           </div>
-          <div className={styles.field}>
-            <label>Country</label>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-xs uppercase">Country</span>
+            </label>
             <input
               type="text"
               value={country}
               onChange={e => onCountryChange(e.target.value)}
               placeholder="e.g. Brazil, Germany"
-              className={styles.input}
+              className="input input-bordered input-sm"
             />
           </div>
-          <div className={styles.field}>
-            <label>Codec</label>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-xs uppercase">Codec</span>
+            </label>
             <select
               value={codec}
               onChange={e => onCodecChange(e.target.value)}
-              className={styles.input}
+              className="select select-bordered select-sm"
             >
               {codecs.map(c => (
                 <option key={c} value={c}>{c || 'Any'}</option>

@@ -1,5 +1,4 @@
 import { Search } from 'lucide-react';
-import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
   value: string;
@@ -9,15 +8,15 @@ interface SearchBarProps {
 
 export function SearchBar({ value, onChange, placeholder = 'Search stations...' }: SearchBarProps) {
   return (
-    <div className={styles.wrapper}>
-      <Search size={18} className={styles.icon} />
+    <label className="input input-bordered flex items-center gap-2 w-full">
+      <Search size={16} className="text-base-content/40" />
       <input
         type="text"
         value={value}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
-        className={styles.input}
+        className="grow"
       />
-    </div>
+    </label>
   );
 }

@@ -7,7 +7,6 @@ import { StationList } from '@/components/station/StationList';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ErrorMessage } from '@/components/ui/ErrorMessage';
 import { useFavorites } from '@/hooks/useFavorites';
-import styles from './CountryDetailPage.module.css';
 
 export function CountryDetailPage() {
   const { code } = useParams<{ code: string }>();
@@ -43,12 +42,12 @@ export function CountryDetailPage() {
   const countryName = stations[0]?.country || code?.toUpperCase() || '';
 
   return (
-    <div className={styles.page}>
-      <Link to="/countries" className={styles.back}>
+    <div className="p-6 max-w-6xl mx-auto">
+      <Link to="/countries" className="btn btn-ghost btn-sm gap-1 mb-4">
         <ArrowLeft size={18} />
         All Countries
       </Link>
-      <h1 className={styles.title}>{countryName}</h1>
+      <h1 className="text-2xl font-bold mb-5">{countryName}</h1>
 
       {loading && <LoadingSpinner />}
       {error && <ErrorMessage message={error} onRetry={() => load(0)} />}
@@ -56,13 +55,15 @@ export function CountryDetailPage() {
         <>
           <StationList stations={stations} isFavorite={isFav} onToggleFavorite={toggleFav} />
           {hasMore && (
-            <button
-              className={styles.loadMore}
-              onClick={() => load(stations.length)}
-              disabled={loadingMore}
-            >
-              {loadingMore ? 'Loading...' : 'Load More'}
-            </button>
+            <div className="flex justify-center mt-4">
+              <button
+                className="btn btn-ghost btn-sm"
+                onClick={() => load(stations.length)}
+                disabled={loadingMore}
+              >
+                {loadingMore ? 'Loading...' : 'Load More'}
+              </button>
+            </div>
           )}
         </>
       )}

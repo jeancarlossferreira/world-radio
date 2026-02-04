@@ -1,69 +1,14 @@
 .popup :global(.leaflet-popup-content-wrapper) {
-  background: var(--bg-elevated);
-  color: var(--text-primary);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow);
+  background: oklch(var(--b2));
+  color: oklch(var(--bc));
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .popup :global(.leaflet-popup-tip) {
-  background: var(--bg-elevated);
+  background: oklch(var(--b2));
 }
 
-.content {
-  padding: 4px 0;
-  min-width: 160px;
-}
-
-.name {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.meta {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-}
-
-.estimated {
-  font-size: 11px;
-  color: #e89020;
-  font-style: italic;
-  margin-bottom: 6px;
-}
-
-.actions {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.playBtn {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 5px 12px;
-  background: var(--accent);
-  color: white;
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.playBtn:hover {
-  background: var(--accent-hover);
-}
-
-.favBtn {
-  padding: 5px;
-  color: var(--text-muted);
-}
-
-.favBtn:hover {
-  color: var(--text-primary);
-}
-
-.favBtn.favActive {
-  color: var(--accent);
+.popup :global(.leaflet-popup-content) {
+  margin: 8px 12px;
 }

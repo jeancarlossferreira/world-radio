@@ -19,7 +19,6 @@ interface Bounds {
 
 let globalStationsCache: Station[] | null = null;
 
-// Deterministic hash from station UUID to get a stable spread within the bbox
 function hashCode(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -154,7 +153,6 @@ export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initia
     focusBounds.current = [[south, west], [north, east]];
   }
 
-  // Register the locate callback so the sidebar can pan the map
   const handleLocateStation = useCallback((station: Station) => {
     if (station.geo_lat !== null && station.geo_long !== null && mapRef.current) {
       const map = mapRef.current;
@@ -240,7 +238,6 @@ export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initia
     return [...guaranteed, ...rest.slice(0, remaining)];
   }
 
-  // Load 500 global top stations once
   useEffect(() => {
     if (globalStationsCache) {
       globalStationsCache.forEach(s => stationMapRef.current.set(s.stationuuid, s));
@@ -261,7 +258,6 @@ export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initia
       results.forEach(s => stationMapRef.current.set(s.stationuuid, s));
       setVisibleStations(results);
     }).catch(() => {
-      // keep empty
     }).finally(() => {
       if (!cancelled) setLoading(false);
     });
@@ -269,7 +265,6 @@ export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initia
     return () => { cancelled = true; };
   }, []);
 
-  // Load all stations for the focused country and push to context
   useEffect(() => {
     if (!focusCountry) return;
 
@@ -286,7 +281,6 @@ export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initia
       const all = Array.from(stationMapRef.current.values());
       setVisibleStations(filterToViewport(all, boundsRef.current, zoomRef.current));
     }).catch(() => {
-      // ignore
     }).finally(() => {
       if (!cancelled) setLoading(false);
     });
@@ -354,9 +348,16 @@ export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initia
   const zoom = initialZoom ?? 3;
 
   return (
-    <div className={styles.container}>
-      {loading && <div className={styles.loading}><div className={styles.spinner} />Loading stations...</div>}
-      <div className={styles.count}>{visibleStations.length} stations</div>
+    <div className="relative w-full h-full">
+      {loading && (
+        <div className={styles.overlay + ' top-3 left-1/2 -translate-x-1/2'}>
+          <span className="loading loading-spinner loading-xs" />
+          Loading stations...
+        </div>
+      )}
+      <div className={styles.overlay + ' top-3 right-3'}>
+        {visibleStations.length} stations
+      </div>
       <MapContainer
         center={center}
         zoom={Math.max(zoom, 3)}
@@ -364,7 +365,7 @@ export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initia
         maxBounds={[[-90, -180], [90, 180]]}
         maxBoundsViscosity={1.0}
         worldCopyJump={false}
-        className={styles.map}
+        className="w-full h-full bg-base-300"
         scrollWheelZoom={true}
         zoomControl={true}
         ref={mapRef}

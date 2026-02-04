@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Search, Globe, Map, Heart, Clock, Radio } from 'lucide-react';
-import styles from './Sidebar.module.css';
+import { Home, Search, Globe, Map, Heart, Clock, Radio, X } from 'lucide-react';
+import { ThemePicker } from '@/components/ui/ThemePicker';
 
 const navItems = [
   { to: '/', icon: Home, label: 'Home' },
@@ -11,28 +11,39 @@ const navItems = [
   { to: '/history', icon: Clock, label: 'History' },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  onClose: () => void;
+}
+
+export function Sidebar({ onClose }: SidebarProps) {
   return (
-    <aside className={styles.sidebar}>
-      <div className={styles.logo}>
-        <Radio size={24} />
-        <span>World Radio</span>
+    <div className="flex flex-col h-full">
+      <div className="flex items-center justify-between px-4 py-4 border-b border-base-300">
+        <div className="flex items-center gap-2 text-lg font-bold text-primary">
+          <Radio size={22} />
+          <span>World Radio</span>
+        </div>
+        <button className="btn btn-ghost btn-circle btn-sm" onClick={onClose}>
+          <X size={18} />
+        </button>
       </div>
-      <nav className={styles.nav}>
+      <ul className="menu flex-1 p-2">
         {navItems.map(item => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            end={item.to === '/'}
-            className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.active : ''}`
-            }
-          >
-            <item.icon size={20} />
-            <span>{item.label}</span>
-          </NavLink>
+          <li key={item.to}>
+            <NavLink
+              to={item.to}
+              end={item.to === '/'}
+              className={({ isActive }) => isActive ? 'active' : ''}
+            >
+              <item.icon size={18} />
+              {item.label}
+            </NavLink>
+          </li>
         ))}
-      </nav>
-    </aside>
+      </ul>
+      <div className="p-3 border-t border-base-300">
+        <ThemePicker />
+      </div>
+    </div>
   );
 }

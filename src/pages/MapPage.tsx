@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { WorldMap } from '@/components/map/WorldMap';
 import { useFavorites } from '@/hooks/useFavorites';
-import styles from './MapPage.module.css';
 
 export function MapPage() {
   const { isFav, toggleFav } = useFavorites();
@@ -27,7 +26,7 @@ export function MapPage() {
   const focusCountry = searchParams.get('country') || undefined;
 
   return (
-    <div className={styles.page}>
+    <div className="h-full">
       <WorldMap
         isFavorite={isFav}
         onToggleFavorite={toggleFav}

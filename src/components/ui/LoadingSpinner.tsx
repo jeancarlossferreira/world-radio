@@ -1,9 +1,8 @@
-import styles from './LoadingSpinner.module.css';
-
 export function LoadingSpinner({ size = 32 }: { size?: number }) {
+  const sizeClass = size >= 32 ? 'loading-lg' : size >= 24 ? 'loading-md' : 'loading-sm';
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.spinner} style={{ width: size, height: size }} />
+    <div className="flex justify-center py-8">
+      <span className={`loading loading-spinner ${sizeClass} text-primary`} />
     </div>
   );
 }

@@ -9,7 +9,6 @@ import { ErrorMessage } from '@/components/ui/ErrorMessage';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { useStationSearch } from '@/hooks/useStationSearch';
 import { useFavorites } from '@/hooks/useFavorites';
-import styles from './SearchPage.module.css';
 
 export function SearchPage() {
   const [urlParams] = useSearchParams();
@@ -28,8 +27,8 @@ export function SearchPage() {
   }, [name, tag, country, codec, search]);
 
   return (
-    <div className={styles.page}>
-      <h1 className={styles.title}>Search Stations</h1>
+    <div className="p-6 max-w-6xl mx-auto">
+      <h1 className="text-2xl font-bold mb-5">Search Stations</h1>
       <SearchBar value={name} onChange={setName} />
       <FilterPanel
         tag={tag}
@@ -40,7 +39,7 @@ export function SearchPage() {
         onCodecChange={setCodec}
       />
 
-      <div className={styles.results}>
+      <div className="mt-6">
         {loading && stations.length === 0 && <LoadingSpinner />}
         {error && <ErrorMessage message={error} />}
         {!loading && stations.length === 0 && (name || tag || country) && (
@@ -54,9 +53,11 @@ export function SearchPage() {
           <>
             <StationList stations={stations} isFavorite={isFav} onToggleFavorite={toggleFav} />
             {hasMore && (
-              <button className={styles.loadMore} onClick={loadMore} disabled={loading}>
-                {loading ? 'Loading...' : 'Load More'}
-              </button>
+              <div className="flex justify-center mt-4">
+                <button className="btn btn-ghost btn-sm" onClick={loadMore} disabled={loading}>
+                  {loading ? 'Loading...' : 'Load More'}
+                </button>
+              </div>
             )}
           </>
         )}

@@ -2,14 +2,13 @@ import { Heart } from 'lucide-react';
 import { StationList } from '@/components/station/StationList';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { useFavorites } from '@/hooks/useFavorites';
-import styles from './FavoritesPage.module.css';
 
 export function FavoritesPage() {
   const { favorites, isFav, toggleFav } = useFavorites();
 
   return (
-    <div className={styles.page}>
-      <h1 className={styles.title}>
+    <div className="p-6 max-w-6xl mx-auto">
+      <h1 className="text-2xl font-bold flex items-center gap-2 mb-5">
         <Heart size={24} />
         Favorites
       </h1>
@@ -21,7 +20,7 @@ export function FavoritesPage() {
         />
       ) : (
         <>
-          <p className={styles.count}>{favorites.length} station{favorites.length !== 1 ? 's' : ''}</p>
+          <p className="text-sm text-base-content/60 mb-4">{favorites.length} station{favorites.length !== 1 ? 's' : ''}</p>
           <StationList stations={favorites} isFavorite={isFav} onToggleFavorite={toggleFav} />
         </>
       )}
