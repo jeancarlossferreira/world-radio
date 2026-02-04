@@ -26,6 +26,13 @@
   margin-bottom: 8px;
 }
 
+.estimated {
+  font-size: 11px;
+  color: #e89020;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
 .actions {
   display: flex;
   gap: 6px;

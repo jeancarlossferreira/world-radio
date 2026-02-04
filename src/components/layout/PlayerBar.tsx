@@ -29,7 +29,12 @@ export function PlayerBar() {
             ) : isLoading ? (
               <span>Connecting...</span>
             ) : (
-              <span>{currentStation.country}{currentStation.state ? ` · ${currentStation.state}` : ''}{currentStation.bitrate > 0 ? ` · ${currentStation.bitrate} kbps` : ''}</span>
+              <span>
+                {currentStation.country}
+                {currentStation.state ? ` · ${currentStation.state}` : ''}
+                {currentStation.language ? ` · ${currentStation.language}` : ''}
+                {currentStation.bitrate > 0 ? ` · ${currentStation.bitrate} kbps` : ''}
+              </span>
             )}
           </div>
         </div>

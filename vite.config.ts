@@ -9,4 +9,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    allowedHosts: [
+      'pulpiest-sepulchrally-marketta.ngrok-free.dev'
+    ]
+  }
 })

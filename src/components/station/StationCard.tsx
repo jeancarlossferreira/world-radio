@@ -10,15 +10,6 @@ interface StationCardProps {
   onToggleFavorite: (station: Station) => void;
 }
 
-function countryFlag(code: string): string {
-  if (!code || code.length !== 2) return '';
-  const offset = 0x1F1E6;
-  return String.fromCodePoint(
-    code.charCodeAt(0) - 65 + offset,
-    code.charCodeAt(1) - 65 + offset
-  );
-}
-
 export function StationCard({ station, isFavorite, onToggleFavorite }: StationCardProps) {
   const { currentStation, isPlaying, isLoading, togglePlay } = usePlayer();
   const navigate = useNavigate();
@@ -56,7 +47,14 @@ export function StationCard({ station, isFavorite, onToggleFavorite }: StationCa
         <div className={styles.meta}>
           {station.countrycode && (
             <span className={styles.country}>
-              {countryFlag(station.countrycode.toUpperCase())} {station.country}
+              <img
+                className={styles.countryFlag}
+                src={`https://flagcdn.com/w20/${station.countrycode.toLowerCase()}.png`}
+                alt=""
+                width={16}
+                height={12}
+              />
+              {station.country}
               {station.state && ` · ${station.state}`}
             </span>
           )}

@@ -16,8 +16,9 @@ export function useCountries() {
     getCountries()
       .then(data => {
         if (cancelled) return;
-        cachedCountries = data;
-        setCountries(data);
+        const sorted = data.sort((a, b) => a.name.localeCompare(b.name));
+        cachedCountries = sorted;
+        setCountries(sorted);
       })
       .catch(err => {
         if (cancelled) return;

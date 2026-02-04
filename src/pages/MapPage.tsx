@@ -24,6 +24,8 @@ export function MapPage() {
     return undefined;
   }, [searchParams]);
 
+  const focusCountry = searchParams.get('country') || undefined;
+
   return (
     <div className={styles.page}>
       <WorldMap
@@ -32,6 +34,7 @@ export function MapPage() {
         initialCenter={mapParams?.center}
         initialZoom={mapParams?.zoom}
         focusStationId={mapParams?.stationId}
+        focusCountry={focusCountry}
       />
     </div>
   );

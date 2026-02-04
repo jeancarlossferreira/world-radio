@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PlayerProvider } from '@/context/PlayerContext';
+import { MapFocusProvider } from '@/context/MapFocusContext';
 import { AppShell } from '@/components/layout/AppShell';
 import { HomePage } from '@/pages/HomePage';
 import { SearchPage } from '@/pages/SearchPage';
@@ -13,6 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <PlayerProvider>
+      <MapFocusProvider>
         <Routes>
           <Route element={<AppShell />}>
             <Route path="/" element={<HomePage />} />
@@ -24,6 +26,7 @@ function App() {
             <Route path="/history" element={<HistoryPage />} />
           </Route>
         </Routes>
+      </MapFocusProvider>
       </PlayerProvider>
     </BrowserRouter>
   );

@@ -47,10 +47,6 @@
   background: var(--bg-elevated);
 }
 
-.spacer {
-  flex: 1;
-}
-
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
@@ -84,9 +80,5 @@
     gap: 2px;
     padding: 6px 8px;
     font-size: 10px;
-  }
-
-  .spacer {
-    display: none;
   }
 }

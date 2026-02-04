@@ -99,9 +99,20 @@
 }
 
 .country {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.countryFlag {
+  width: 16px;
+  height: 12px;
+  border-radius: 1px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .bitrate {

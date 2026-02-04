@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import { Home, Search, Globe, Map, Heart, Clock, Radio } from 'lucide-react';
-import { ThemePicker } from '@/components/ui/ThemePicker';
 import styles from './Sidebar.module.css';
 
 const navItems = [
@@ -34,8 +33,6 @@ export function Sidebar() {
           </NavLink>
         ))}
       </nav>
-      <div className={styles.spacer} />
-      <ThemePicker />
     </aside>
   );
 }

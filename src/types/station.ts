@@ -18,6 +18,7 @@ export interface Station {
   clicktrend: number;
   geo_lat: number | null;
   geo_long: number | null;
+  _estimatedGeo?: boolean;
   has_extended_info: boolean;
   lastchangetime_iso8601: string;
   lastcheckok: number;
