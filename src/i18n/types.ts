@@ -51,6 +51,9 @@ export interface TranslationStrings {
   'action.locateOnMap': string;
   'action.addToFavorites': string;
   'action.removeFromFavorites': string;
+  'action.share': string;
+  'action.copyLink': string;
+  'action.shareGoogleChat': string;
 
   // Empty states
   'empty.noStationsFound': string;

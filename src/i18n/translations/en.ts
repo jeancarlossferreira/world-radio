@@ -53,6 +53,9 @@ export const en: TranslationStrings = {
   'action.locateOnMap': 'Locate on map',
   'action.addToFavorites': 'Add to favorites',
   'action.removeFromFavorites': 'Remove from favorites',
+  'action.share': 'Share',
+  'action.copyLink': 'Copy link',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': 'No stations found',

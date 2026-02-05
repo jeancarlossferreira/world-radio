@@ -53,6 +53,9 @@ export const ru: TranslationStrings = {
   'action.locateOnMap': 'Найти на карте',
   'action.addToFavorites': 'Добавить в избранное',
   'action.removeFromFavorites': 'Удалить из избранного',
+  'action.share': 'Поделиться',
+  'action.copyLink': 'Копировать ссылку',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': 'Станции не найдены',

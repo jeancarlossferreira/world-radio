@@ -53,6 +53,9 @@ export const ja: TranslationStrings = {
   'action.locateOnMap': '地図で位置を確認',
   'action.addToFavorites': 'お気に入りに追加',
   'action.removeFromFavorites': 'お気に入りから削除',
+  'action.share': '共有',
+  'action.copyLink': 'リンクをコピー',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': '放送局が見つかりません',

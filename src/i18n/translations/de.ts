@@ -53,6 +53,9 @@ export const de: TranslationStrings = {
   'action.locateOnMap': 'Auf Karte lokalisieren',
   'action.addToFavorites': 'Zu Favoriten hinzufügen',
   'action.removeFromFavorites': 'Aus Favoriten entfernen',
+  'action.share': 'Teilen',
+  'action.copyLink': 'Link kopieren',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': 'Keine Sender gefunden',

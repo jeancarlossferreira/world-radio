@@ -53,6 +53,9 @@ export const ar: TranslationStrings = {
   'action.locateOnMap': 'تحديد على الخريطة',
   'action.addToFavorites': 'إضافة إلى المفضلة',
   'action.removeFromFavorites': 'إزالة من المفضلة',
+  'action.share': 'مشاركة',
+  'action.copyLink': 'نسخ الرابط',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': 'لم يتم العثور على محطات',
