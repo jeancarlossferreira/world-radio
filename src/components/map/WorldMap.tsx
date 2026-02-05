@@ -5,7 +5,7 @@ import type { Station } from '@/types/station';
 import { searchStations, getStationsByCountry } from '@/lib/api';
 import { useMapFocus } from '@/context/MapFocusContext';
 import { StationMarker } from './StationMarker';
-import { NoStationOverlay } from './NoStationOverlay';
+
 import { COUNTRY_BBOXES } from '@/lib/country-bboxes';
 import 'leaflet/dist/leaflet.css';
 import styles from './WorldMap.module.css';
@@ -375,7 +375,7 @@ export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initia
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
           noWrap={true}
         />
-        <NoStationOverlay />
+
         <MapEventHandler onBoundsChange={handleBoundsChange} />
         <MapController
           center={initialCenter}
