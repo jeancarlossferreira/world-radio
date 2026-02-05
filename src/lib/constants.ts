@@ -3,6 +3,7 @@ export const API_BASE = 'https://de1.api.radio-browser.info';
 export const STORAGE_KEYS = {
   FAVORITES: 'radio_favorites',
   HISTORY: 'radio_history',
+  LOCALE: 'radio_locale',
 } as const;
 
 export const MAX_FAVORITES = 200;

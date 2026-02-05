@@ -3,9 +3,11 @@ import { Play, Pause, Square, Radio, Heart, MapPin } from 'lucide-react';
 import { usePlayer } from '@/context/PlayerContext';
 import { useFavorites } from '@/hooks/useFavorites';
 import { VolumeSlider } from '@/components/ui/VolumeSlider';
+import { useI18n } from '@/context/I18nContext';
 
 export function PlayerBar() {
   const navigate = useNavigate();
+  const { t } = useI18n();
   const { currentStation, isPlaying, isLoading, volume, error, togglePlay, stop, setVolume } = usePlayer();
   const { isFav, toggleFav } = useFavorites();
 
@@ -37,7 +39,7 @@ export function PlayerBar() {
                 {error ? (
                   <span className="text-error">{error}</span>
                 ) : isLoading ? (
-                  <span>Connecting...</span>
+                  <span>{t('player.connecting')}</span>
                 ) : (
                   <span>
                     {currentStation.country}
@@ -48,7 +50,7 @@ export function PlayerBar() {
               </div>
             </>
           ) : (
-            <div className="text-sm text-base-content/50">No station selected</div>
+            <div className="text-sm text-base-content/50">{t('player.noStation')}</div>
           )}
         </div>
       </div>
@@ -72,7 +74,7 @@ export function PlayerBar() {
           className="btn btn-ghost btn-circle btn-sm"
           onClick={stop}
           disabled={!currentStation}
-          title="Stop"
+          title={t('action.stop')}
         >
           <Square size={16} />
         </button>
@@ -89,7 +91,7 @@ export function PlayerBar() {
           className={`btn btn-ghost btn-circle btn-sm ${isFavorite ? 'text-primary' : ''}`}
           onClick={() => currentStation && toggleFav(currentStation)}
           disabled={!currentStation}
-          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          title={isFavorite ? t('action.removeFromFavorites') : t('action.addToFavorites')}
         >
           <Heart size={18} fill={isFavorite ? 'currentColor' : 'none'} />
         </button>
@@ -101,7 +103,7 @@ export function PlayerBar() {
             }
           }}
           disabled={!currentStation || !hasGeo}
-          title="Show on map"
+          title={t('action.showOnMap')}
         >
           <MapPin size={18} />
         </button>

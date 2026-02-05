@@ -7,9 +7,11 @@ import { StationList } from '@/components/station/StationList';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ErrorMessage } from '@/components/ui/ErrorMessage';
 import { useFavorites } from '@/hooks/useFavorites';
+import { useI18n } from '@/context/I18nContext';
 
 export function CountryDetailPage() {
   const { code } = useParams<{ code: string }>();
+  const { t } = useI18n();
   const [stations, setStations] = useState<Station[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -45,7 +47,7 @@ export function CountryDetailPage() {
     <div className="p-6 max-w-6xl mx-auto">
       <Link to="/countries" className="btn btn-ghost btn-sm gap-1 mb-4">
         <ArrowLeft size={18} />
-        All Countries
+        {t('action.allCountries')}
       </Link>
       <h1 className="text-2xl font-bold mb-5">{countryName}</h1>
 
@@ -61,7 +63,7 @@ export function CountryDetailPage() {
                 onClick={() => load(stations.length)}
                 disabled={loadingMore}
               >
-                {loadingMore ? 'Loading...' : 'Load More'}
+                {loadingMore ? t('action.loading') : t('action.loadMore')}
               </button>
             </div>
           )}

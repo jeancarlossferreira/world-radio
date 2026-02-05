@@ -9,9 +9,11 @@ import { SearchBar } from '@/components/search/SearchBar';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ErrorMessage } from '@/components/ui/ErrorMessage';
 import { useFavorites } from '@/hooks/useFavorites';
+import { useI18n } from '@/context/I18nContext';
 
 export function HomePage() {
   const navigate = useNavigate();
+  const { t } = useI18n();
   const [trending, setTrending] = useState<Station[]>([]);
   const [genreStations, setGenreStations] = useState<Station[]>([]);
   const [selectedGenre, setSelectedGenre] = useState('');
@@ -56,8 +58,7 @@ export function HomePage() {
     }
   };
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
+  const handleSearchSubmit = (query: string) => {
     if (query.trim()) {
       navigate(`/search?q=${encodeURIComponent(query.trim())}`);
     }
@@ -69,13 +70,14 @@ export function HomePage() {
         <div className="hero-content text-center py-12">
           <div className="max-w-md">
             <Radio size={40} className="mx-auto mb-4 text-primary" />
-            <h1 className="text-3xl font-bold">World Radio</h1>
-            <p className="py-3 text-base-content/70">Listen to radio stations from around the world</p>
+            <h1 className="text-3xl font-bold">{t('app.name')}</h1>
+            <p className="py-3 text-base-content/70">{t('app.tagline')}</p>
             <div className="w-full max-w-sm mx-auto">
               <SearchBar
                 value={searchQuery}
-                onChange={handleSearch}
-                placeholder="Search for stations, genres, or countries..."
+                onChange={setSearchQuery}
+                onSubmit={handleSearchSubmit}
+                placeholder={t('search.placeholderHome')}
               />
             </div>
           </div>
@@ -85,7 +87,7 @@ export function HomePage() {
       <section className="mb-8">
         <h2 className="text-lg font-semibold flex items-center gap-2 mb-4">
           <TrendingUp size={20} />
-          Browse by Genre
+          {t('page.browseByGenre')}
         </h2>
         <div className="flex flex-wrap gap-2">
           {GENRE_TAGS.map(genre => (
@@ -109,7 +111,7 @@ export function HomePage() {
       <section>
         <h2 className="text-lg font-semibold flex items-center gap-2 mb-4">
           <TrendingUp size={20} />
-          Trending Stations
+          {t('page.trendingStations')}
         </h2>
         {loading && <LoadingSpinner />}
         {error && <ErrorMessage message={error} onRetry={loadTrending} />}

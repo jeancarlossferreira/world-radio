@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Play, Pause, Heart, Radio, MapPin } from 'lucide-react';
 import type { Station } from '@/types/station';
 import { usePlayer } from '@/context/PlayerContext';
+import { useI18n } from '@/context/I18nContext';
 
 interface StationCardProps {
   station: Station;
@@ -12,6 +13,7 @@ interface StationCardProps {
 export function StationCard({ station, isFavorite, onToggleFavorite }: StationCardProps) {
   const { currentStation, isPlaying, isLoading, togglePlay } = usePlayer();
   const navigate = useNavigate();
+  const { t } = useI18n();
   const isActive = currentStation?.stationuuid === station.stationuuid;
   const tags = station.tags ? station.tags.split(',').filter(Boolean).slice(0, 3) : [];
 
@@ -79,7 +81,7 @@ export function StationCard({ station, isFavorite, onToggleFavorite }: StationCa
           <button
             className="btn btn-ghost btn-circle btn-xs"
             onClick={() => navigate(`/map?lat=${station.geo_lat}&lng=${station.geo_long}&zoom=14&station=${station.stationuuid}`)}
-            title="Locate on map"
+            title={t('action.locateOnMap')}
           >
             <MapPin size={14} />
           </button>
@@ -87,7 +89,7 @@ export function StationCard({ station, isFavorite, onToggleFavorite }: StationCa
         <button
           className={`btn btn-ghost btn-circle btn-xs ${isFavorite ? 'text-primary' : ''}`}
           onClick={() => onToggleFavorite(station)}
-          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          title={isFavorite ? t('action.removeFromFavorites') : t('action.addToFavorites')}
         >
           <Heart size={14} fill={isFavorite ? 'currentColor' : 'none'} />
         </button>

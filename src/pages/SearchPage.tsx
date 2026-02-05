@@ -9,8 +9,10 @@ import { ErrorMessage } from '@/components/ui/ErrorMessage';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { useStationSearch } from '@/hooks/useStationSearch';
 import { useFavorites } from '@/hooks/useFavorites';
+import { useI18n } from '@/context/I18nContext';
 
 export function SearchPage() {
+  const { t } = useI18n();
   const [urlParams] = useSearchParams();
   const initialQuery = urlParams.get('q') || '';
   const [name, setName] = useState(initialQuery);
@@ -28,7 +30,7 @@ export function SearchPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-2xl font-bold mb-5">Search Stations</h1>
+      <h1 className="text-2xl font-bold mb-5">{t('page.searchStations')}</h1>
       <SearchBar value={name} onChange={setName} />
       <FilterPanel
         tag={tag}
@@ -45,8 +47,8 @@ export function SearchPage() {
         {!loading && stations.length === 0 && (name || tag || country) && (
           <EmptyState
             icon={<Search size={40} />}
-            title="No stations found"
-            description="Try different search terms or adjust filters"
+            title={t('empty.noStationsFound')}
+            description={t('empty.noStationsFoundDesc')}
           />
         )}
         {stations.length > 0 && (
@@ -55,7 +57,7 @@ export function SearchPage() {
             {hasMore && (
               <div className="flex justify-center mt-4">
                 <button className="btn btn-ghost btn-sm" onClick={loadMore} disabled={loading}>
-                  {loading ? 'Loading...' : 'Load More'}
+                  {loading ? t('action.loading') : t('action.loadMore')}
                 </button>
               </div>
             )}

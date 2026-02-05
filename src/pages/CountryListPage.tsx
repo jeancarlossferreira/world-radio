@@ -6,11 +6,13 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ErrorMessage } from '@/components/ui/ErrorMessage';
 import { useCountries } from '@/hooks/useCountries';
 import { COUNTRY_CONTINENT, COUNTRY_LANGUAGE, CONTINENTS } from '@/lib/country-data';
+import { useI18n } from '@/context/I18nContext';
 
 type SortKey = 'name' | 'stations' | 'language' | 'continent';
 
 export function CountryListPage() {
   const { countries, loading, error } = useCountries();
+  const { t } = useI18n();
   const [filter, setFilter] = useState('');
   const [sortBy, setSortBy] = useState<SortKey>('name');
   const [continentFilter, setContinentFilter] = useState('');
@@ -55,39 +57,41 @@ export function CountryListPage() {
     <div className="p-6 max-w-6xl mx-auto">
       <h1 className="text-2xl font-bold flex items-center gap-2">
         <Globe size={24} />
-        Browse by Country
+        {t('page.browseByCountry')}
       </h1>
-      <p className="text-sm text-base-content/60 mt-1 mb-5">{countries.length} countries with radio stations</p>
+      <p className="text-sm text-base-content/60 mt-1 mb-5">
+        {t('countries.count', { count: countries.length })}
+      </p>
 
       <div className="flex flex-wrap items-end gap-3 mb-5">
         <div className="flex-1 min-w-[200px]">
-          <SearchBar value={filter} onChange={setFilter} placeholder="Filter countries..." />
+          <SearchBar value={filter} onChange={setFilter} placeholder={t('filter.filterCountries')} />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text text-xs">Sort by</span>
+            <span className="label-text text-xs">{t('filter.sortBy')}</span>
           </label>
           <select
             className="select select-bordered select-sm"
             value={sortBy}
             onChange={e => setSortBy(e.target.value as SortKey)}
           >
-            <option value="name">Name</option>
-            <option value="stations">Stations</option>
-            <option value="language">Language</option>
-            <option value="continent">Continent</option>
+            <option value="name">{t('sort.name')}</option>
+            <option value="stations">{t('sort.stations')}</option>
+            <option value="language">{t('sort.language')}</option>
+            <option value="continent">{t('sort.continent')}</option>
           </select>
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text text-xs">Continent</span>
+            <span className="label-text text-xs">{t('filter.continent')}</span>
           </label>
           <select
             className="select select-bordered select-sm"
             value={continentFilter}
             onChange={e => setContinentFilter(e.target.value)}
           >
-            <option value="">All</option>
+            <option value="">{t('filter.continentAll')}</option>
             {CONTINENTS.map(c => (
               <option key={c} value={c}>{c}</option>
             ))}
