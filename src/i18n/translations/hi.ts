@@ -54,8 +54,6 @@ export const hi: TranslationStrings = {
   'action.addToFavorites': 'पसंदीदा में जोड़ें',
   'action.removeFromFavorites': 'पसंदीदा से हटाएं',
   'action.share': 'साझा करें',
-  'action.copyLink': 'लिंक कॉपी करें',
-  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': 'कोई स्टेशन नहीं मिला',

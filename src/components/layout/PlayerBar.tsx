@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Play, Pause, Square, Radio, Heart, MapPin, Share2, MessageSquare, Link, Share } from 'lucide-react';
+import { Play, Pause, Square, Radio, Heart, MapPin, Share2 } from 'lucide-react';
 import { usePlayer } from '@/context/PlayerContext';
 import { useFavorites } from '@/hooks/useFavorites';
 import { VolumeSlider } from '@/components/ui/VolumeSlider';
@@ -14,35 +14,18 @@ export function PlayerBar() {
   const isFavorite = currentStation ? isFav(currentStation.stationuuid) : false;
   const hasGeo = currentStation?.geo_lat !== null && currentStation?.geo_long !== null;
 
-  const getShareUrl = () => currentStation?.homepage || currentStation?.url_resolved || '';
-
-  const closeShareMenu = () => {
-    (document.activeElement as HTMLElement)?.blur();
-  };
-
-  const handleCopyLink = async () => {
+  const handleShare = async () => {
     if (!currentStation) return;
-    await navigator.clipboard.writeText(getShareUrl());
-    closeShareMenu();
-  };
-
-  const handleShareNative = async () => {
-    if (!currentStation) return;
-    closeShareMenu();
-    await navigator.share({
-      title: currentStation.name,
-      text: `${currentStation.name} — ${currentStation.country}`,
-      url: getShareUrl(),
-    });
-  };
-
-  const handleShareGoogleChat = async () => {
-    if (!currentStation) return;
-    const url = getShareUrl();
-    const text = `${currentStation.name} — ${currentStation.country}\n${url}`;
-    await navigator.clipboard.writeText(text);
-    closeShareMenu();
-    window.open('https://chat.google.com', '_blank');
+    const url = currentStation.homepage || currentStation.url_resolved;
+    if (navigator.share) {
+      await navigator.share({
+        title: currentStation.name,
+        text: `${currentStation.name} — ${currentStation.country}`,
+        url,
+      });
+    } else {
+      await navigator.clipboard.writeText(url);
+    }
   };
 
   return (
@@ -138,38 +121,14 @@ export function PlayerBar() {
         >
           <MapPin size={18} />
         </button>
-        <div className="dropdown dropdown-top dropdown-end">
-          <button
-            tabIndex={0}
-            className="btn btn-ghost btn-circle btn-sm"
-            disabled={!currentStation}
-            title={t('action.share')}
-          >
-            <Share2 size={18} />
-          </button>
-          <ul tabIndex={0} className="dropdown-content menu bg-base-200 border border-base-300 rounded-box w-48 p-2 shadow-lg mb-2">
-            <li>
-              <button onClick={handleCopyLink}>
-                <Link size={16} />
-                {t('action.copyLink')}
-              </button>
-            </li>
-            <li>
-              <button onClick={handleShareGoogleChat}>
-                <MessageSquare size={16} />
-                {t('action.shareGoogleChat')}
-              </button>
-            </li>
-            {'share' in navigator && (
-              <li>
-                <button onClick={handleShareNative}>
-                  <Share size={16} />
-                  {t('action.share')}
-                </button>
-              </li>
-            )}
-          </ul>
-        </div>
+        <button
+          className="btn btn-ghost btn-circle btn-sm"
+          onClick={handleShare}
+          disabled={!currentStation}
+          title={t('action.share')}
+        >
+          <Share2 size={18} />
+        </button>
       </div>
     </div>
   );

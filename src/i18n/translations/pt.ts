@@ -54,8 +54,6 @@ export const pt: TranslationStrings = {
   'action.addToFavorites': 'Adicionar aos favoritos',
   'action.removeFromFavorites': 'Remover dos favoritos',
   'action.share': 'Compartilhar',
-  'action.copyLink': 'Copiar link',
-  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': 'Nenhuma estação encontrada',

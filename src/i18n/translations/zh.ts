@@ -54,8 +54,6 @@ export const zh: TranslationStrings = {
   'action.addToFavorites': '添加到收藏',
   'action.removeFromFavorites': '从收藏中移除',
   'action.share': '分享',
-  'action.copyLink': '复制链接',
-  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': '未找到电台',

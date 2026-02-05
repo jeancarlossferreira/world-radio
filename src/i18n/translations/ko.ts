@@ -54,8 +54,6 @@ export const ko: TranslationStrings = {
   'action.addToFavorites': '즐겨찾기에 추가',
   'action.removeFromFavorites': '즐겨찾기에서 제거',
   'action.share': '공유',
-  'action.copyLink': '링크 복사',
-  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': '방송국을 찾을 수 없습니다',
