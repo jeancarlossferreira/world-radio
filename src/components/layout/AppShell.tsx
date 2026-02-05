@@ -1,11 +1,28 @@
-import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { Sidebar } from './Sidebar';
 import { PlayerBar } from './PlayerBar';
+import { usePlayer } from '@/context/PlayerContext';
+import { getStationByUUID } from '@/lib/api';
 
 export function AppShell() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { play } = usePlayer();
+  const handledRef = useRef(false);
+
+  useEffect(() => {
+    const stationId = searchParams.get('station');
+    if (!stationId || handledRef.current) return;
+    handledRef.current = true;
+
+    getStationByUUID(stationId).then(station => {
+      if (station) play(station);
+      searchParams.delete('station');
+      setSearchParams(searchParams, { replace: true });
+    });
+  }, [searchParams, setSearchParams, play]);
 
   return (
     <div className="h-full flex">

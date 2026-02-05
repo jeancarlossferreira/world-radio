@@ -16,15 +16,15 @@ export function PlayerBar() {
 
   const handleShare = async () => {
     if (!currentStation) return;
-    const url = currentStation.homepage || currentStation.url_resolved;
+    const shareUrl = `${window.location.origin}/?station=${currentStation.stationuuid}`;
     if (navigator.share) {
       await navigator.share({
         title: currentStation.name,
         text: `${currentStation.name} — ${currentStation.country}`,
-        url,
+        url: shareUrl,
       });
     } else {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(shareUrl);
     }
   };
 

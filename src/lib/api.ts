@@ -74,6 +74,11 @@ export async function getStationsByCountry(countrycode: string, limit = DEFAULT_
   });
 }
 
+export async function getStationByUUID(uuid: string): Promise<Station | null> {
+  const stations = await apiFetch<Station[]>(`/json/stations/byuuid/${encodeURIComponent(uuid)}`);
+  return stations[0] ?? null;
+}
+
 export async function trackStationClick(stationuuid: string): Promise<void> {
   try {
     await apiFetch(`/json/url/${encodeURIComponent(stationuuid)}`);
