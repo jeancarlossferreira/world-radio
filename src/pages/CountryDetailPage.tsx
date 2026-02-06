@@ -53,7 +53,19 @@ export function CountryDetailPage() {
         <ArrowLeft size={18} />
         {t('action.allCountries')}
       </Link>
-      <h1 className="text-2xl font-bold mb-5">{countryName}</h1>
+      <h1 className="text-2xl font-bold mb-5 flex items-center gap-3">
+        {code && (
+          <img
+            src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`}
+            srcSet={`https://flagcdn.com/w80/${code.toLowerCase()}.png 2x`}
+            alt={countryName}
+            className="rounded-sm"
+            width={40}
+            height={30}
+          />
+        )}
+        {countryName}
+      </h1>
 
       {loading && <LoadingSpinner />}
       {error && <ErrorMessage message={error} onRetry={() => load(0)} />}
