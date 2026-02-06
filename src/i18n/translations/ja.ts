@@ -2,7 +2,7 @@ import type { TranslationStrings } from '../types';
 
 export const ja: TranslationStrings = {
   // App
-  'app.name': 'ワールドラジオ',
+  'app.name': 'AstroTune',
   'app.tagline': '世界中のラジオ局を聴こう',
 
   // Navigation
@@ -54,6 +54,14 @@ export const ja: TranslationStrings = {
   'action.addToFavorites': 'お気に入りに追加',
   'action.removeFromFavorites': 'お気に入りから削除',
   'action.share': '共有',
+  'action.copyLink': 'リンクをコピー',
+  'action.qrCode': 'QRコード',
+  'action.shareNative': 'その他',
+  'action.shareEmail': 'メール',
+  'action.shareWhatsApp': 'WhatsApp',
+  'action.shareTelegram': 'Telegram',
+  'action.shareDiscord': 'Discord',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': '放送局が見つかりません',
@@ -71,6 +79,7 @@ export const ja: TranslationStrings = {
   'settings.title': '設定',
   'settings.theme': 'テーマ',
   'settings.language': '言語',
+  'settings.mapTheme': '地図スタイル',
 
   // Countries
   'countries.count': '{{count}}か国のラジオ局',

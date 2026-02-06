@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import type { Country } from '@/types/api';
-import { COUNTRY_CONTINENT, COUNTRY_LANGUAGE } from '@/lib/country-data';
+import { COUNTRY_CONTINENT, COUNTRY_LANGUAGE, getShortCountryName } from '@/lib/country-data';
 
 export function CountryCard({ country }: { country: Country }) {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export function CountryCard({ country }: { country: Country }) {
         <span className="w-8 h-6 bg-base-300 rounded-sm flex items-center justify-center text-xs text-base-content/40">--</span>
       )}
       <div className="flex-1 min-w-0">
-        <span className="font-medium text-sm block truncate">{country.name}</span>
+        <span className="font-medium text-sm block truncate">{getShortCountryName(country.name, country.iso_3166_1)}</span>
         <span className="text-xs text-base-content/60 block truncate">
           {country.stationcount.toLocaleString()} stations
           {language && ` · ${language}`}

@@ -30,6 +30,9 @@ export function SearchPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
+      <div className="flex justify-center mb-6">
+        <img src="/logo.png" alt="AstroTune" className="h-48 rounded-2xl object-contain" />
+      </div>
       <h1 className="text-2xl font-bold mb-5">{t('page.searchStations')}</h1>
       <SearchBar value={name} onChange={setName} />
       <FilterPanel

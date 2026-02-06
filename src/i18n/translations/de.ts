@@ -2,7 +2,7 @@ import type { TranslationStrings } from '../types';
 
 export const de: TranslationStrings = {
   // App
-  'app.name': 'Weltradio',
+  'app.name': 'AstroTune',
   'app.tagline': 'Hören Sie Radiosender aus aller Welt',
 
   // Navigation
@@ -54,6 +54,14 @@ export const de: TranslationStrings = {
   'action.addToFavorites': 'Zu Favoriten hinzufügen',
   'action.removeFromFavorites': 'Aus Favoriten entfernen',
   'action.share': 'Teilen',
+  'action.copyLink': 'Link kopieren',
+  'action.qrCode': 'QR-Code',
+  'action.shareNative': 'Mehr Optionen',
+  'action.shareEmail': 'E-Mail',
+  'action.shareWhatsApp': 'WhatsApp',
+  'action.shareTelegram': 'Telegram',
+  'action.shareDiscord': 'Discord',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': 'Keine Sender gefunden',
@@ -71,6 +79,7 @@ export const de: TranslationStrings = {
   'settings.title': 'Einstellungen',
   'settings.theme': 'Design',
   'settings.language': 'Sprache',
+  'settings.mapTheme': 'Kartenstil',
 
   // Countries
   'countries.count': '{{count}} Länder mit Radiosendern',

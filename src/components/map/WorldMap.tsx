@@ -4,6 +4,7 @@ import L from 'leaflet';
 import type { Station } from '@/types/station';
 import { searchStations, getStationsByCountry } from '@/lib/api';
 import { useMapFocus } from '@/context/MapFocusContext';
+import { useMapTheme, mapThemeOptions } from '@/context/MapThemeContext';
 import { StationMarker } from './StationMarker';
 
 import { COUNTRY_BBOXES } from '@/lib/country-bboxes';
@@ -136,6 +137,8 @@ interface WorldMapProps {
 }
 
 export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initialCenter, initialZoom, focusStationId, focusCountry }: WorldMapProps) {
+  const { mapTheme } = useMapTheme();
+  const themeConfig = mapThemeOptions.find(o => o.value === mapTheme) || mapThemeOptions[0];
   const [visibleStations, setVisibleStations] = useState<Station[]>([]);
   const [loading, setLoading] = useState(false);
   const stationMapRef = useRef<Map<string, Station>>(new Map());
@@ -371,8 +374,9 @@ export function WorldMap({ onStationSelect, isFavorite, onToggleFavorite, initia
         ref={mapRef}
       >
         <TileLayer
-          attribution='&copy; <a href="https://carto.com">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          key={mapTheme}
+          attribution={themeConfig.attribution}
+          url={themeConfig.url}
           noWrap={true}
         />
 

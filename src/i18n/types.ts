@@ -52,6 +52,14 @@ export interface TranslationStrings {
   'action.addToFavorites': string;
   'action.removeFromFavorites': string;
   'action.share': string;
+  'action.copyLink': string;
+  'action.qrCode': string;
+  'action.shareNative': string;
+  'action.shareEmail': string;
+  'action.shareWhatsApp': string;
+  'action.shareTelegram': string;
+  'action.shareDiscord': string;
+  'action.shareGoogleChat': string;
 
   // Empty states
   'empty.noStationsFound': string;
@@ -69,6 +77,7 @@ export interface TranslationStrings {
   'settings.title': string;
   'settings.theme': string;
   'settings.language': string;
+  'settings.mapTheme': string;
 
   // Countries
   'countries.count': string;

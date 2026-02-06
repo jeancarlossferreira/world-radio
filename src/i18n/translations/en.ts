@@ -2,7 +2,7 @@ import type { TranslationStrings } from '../types';
 
 export const en: TranslationStrings = {
   // App
-  'app.name': 'World Radio',
+  'app.name': 'AstroTune',
   'app.tagline': 'Listen to radio stations from around the world',
 
   // Navigation
@@ -54,6 +54,14 @@ export const en: TranslationStrings = {
   'action.addToFavorites': 'Add to favorites',
   'action.removeFromFavorites': 'Remove from favorites',
   'action.share': 'Share',
+  'action.copyLink': 'Copy link',
+  'action.qrCode': 'QR Code',
+  'action.shareNative': 'More options',
+  'action.shareEmail': 'Email',
+  'action.shareWhatsApp': 'WhatsApp',
+  'action.shareTelegram': 'Telegram',
+  'action.shareDiscord': 'Discord',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': 'No stations found',
@@ -71,6 +79,7 @@ export const en: TranslationStrings = {
   'settings.title': 'Settings',
   'settings.theme': 'Theme',
   'settings.language': 'Language',
+  'settings.mapTheme': 'Map style',
 
   // Countries
   'countries.count': '{{count}} countries with radio stations',

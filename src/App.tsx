@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { I18nProvider } from '@/context/I18nContext';
 import { PlayerProvider } from '@/context/PlayerContext';
 import { MapFocusProvider } from '@/context/MapFocusContext';
+import { MapThemeProvider } from '@/context/MapThemeContext';
 import { AppShell } from '@/components/layout/AppShell';
 import { HomePage } from '@/pages/HomePage';
 import { SearchPage } from '@/pages/SearchPage';
@@ -14,6 +15,7 @@ import { HistoryPage } from '@/pages/HistoryPage';
 function App() {
   return (
     <I18nProvider>
+      <MapThemeProvider>
       <BrowserRouter>
         <PlayerProvider>
         <MapFocusProvider>
@@ -31,6 +33,7 @@ function App() {
         </MapFocusProvider>
         </PlayerProvider>
       </BrowserRouter>
+      </MapThemeProvider>
     </I18nProvider>
   );
 }

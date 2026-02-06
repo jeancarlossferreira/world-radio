@@ -1,3 +1,34 @@
+/**
+ * @fileoverview Country data utilities for the radio app.
+ *
+ * This module provides mappings and functions for handling country information:
+ * - Country code to continent mapping (for map filtering)
+ * - Country code to primary language mapping
+ * - Short/friendly country names (USA instead of "United States of America")
+ * - Reverse lookup from common names to ISO codes (for search)
+ *
+ * ISO 3166-1 alpha-2 codes are used throughout (e.g., US, GB, BR).
+ *
+ * @example
+ * import { getShortCountryName, getCountryCodeFromName } from '@/lib/country-data';
+ *
+ * // Get a friendly display name
+ * getShortCountryName('United States of America', 'US'); // Returns 'USA'
+ *
+ * // Convert user input to API-compatible code
+ * getCountryCodeFromName('USA'); // Returns 'US'
+ */
+
+/**
+ * Maps ISO 3166-1 alpha-2 country codes to continent names.
+ *
+ * Used for filtering stations by region on the world map.
+ * Continents: Africa, Asia, Europe, North America, Oceania, South America
+ *
+ * @example
+ * COUNTRY_CONTINENT['US']; // 'North America'
+ * COUNTRY_CONTINENT['JP']; // 'Asia'
+ */
 export const COUNTRY_CONTINENT: Record<string, string> = {
   AF:'Asia',AL:'Europe',DZ:'Africa',AS:'Oceania',AD:'Europe',AO:'Africa',
   AG:'North America',AR:'South America',AM:'Asia',AU:'Oceania',AT:'Europe',
@@ -41,6 +72,16 @@ export const COUNTRY_CONTINENT: Record<string, string> = {
   JE:'Europe',GG:'Europe',IM:'Europe',AX:'Europe',
 };
 
+/**
+ * Maps ISO 3166-1 alpha-2 country codes to their primary language.
+ *
+ * Note: Many countries have multiple official languages; this provides
+ * the most commonly spoken or official language for display purposes.
+ *
+ * @example
+ * COUNTRY_LANGUAGE['BR']; // 'Portuguese'
+ * COUNTRY_LANGUAGE['JP']; // 'Japanese'
+ */
 export const COUNTRY_LANGUAGE: Record<string, string> = {
   AF:'Pashto',AL:'Albanian',DZ:'Arabic',AD:'Catalan',AO:'Portuguese',
   AG:'English',AR:'Spanish',AM:'Armenian',AU:'English',AT:'German',
@@ -88,6 +129,147 @@ export const COUNTRY_LANGUAGE: Record<string, string> = {
   GG:'English',IM:'English',AX:'Swedish',
 };
 
+/**
+ * List of all continents used in the app.
+ *
+ * Defined as a const array for type safety. TypeScript infers the
+ * type as a tuple of string literals, enabling type checking.
+ *
+ * `as const` makes this a readonly tuple, so:
+ * - typeof CONTINENTS[number] = 'Africa' | 'Asia' | 'Europe' | ...
+ */
 export const CONTINENTS = [
   'Africa', 'Asia', 'Europe', 'North America', 'Oceania', 'South America',
 ] as const;
+
+/**
+ * Returns a user-friendly short name for a country.
+ *
+ * The Radio Browser API returns formal country names like:
+ * "The United Kingdom Of Great Britain And Northern Ireland"
+ *
+ * This function converts such names to friendlier versions:
+ * - Uses predefined short names when available (US → USA)
+ * - Removes "The" prefix
+ * - Simplifies "Of" to just a space
+ * - Converts "And" to "&"
+ *
+ * @param name - The full country name from the API
+ * @param code - Optional ISO country code for lookup in COUNTRY_SHORT_NAMES
+ * @returns A shorter, more readable country name
+ *
+ * @example
+ * getShortCountryName('United States of America', 'US');
+ * // Returns: 'USA'
+ *
+ * getShortCountryName('The United Kingdom Of Great Britain And Northern Ireland', 'GB');
+ * // Returns: 'United Kingdom'
+ *
+ * getShortCountryName('The Republic Of Korea');
+ * // Returns: 'Republic Korea' (no code provided, uses regex fallback)
+ */
+export function getShortCountryName(name: string, code?: string): string {
+  // First, check if we have a predefined short name
+  if (code && COUNTRY_SHORT_NAMES[code]) {
+    return COUNTRY_SHORT_NAMES[code];
+  }
+  // Fallback: clean up the name using regex
+  return name
+    .replace(/^The\s+/i, '')      // Remove leading "The "
+    .replace(/\s+Of\s+/gi, ' ')   // "Republic Of Korea" → "Republic Korea"
+    .replace(/\s+And\s+/gi, ' & '); // "Trinidad And Tobago" → "Trinidad & Tobago"
+}
+
+/**
+ * Maps ISO country codes to their commonly used short names.
+ *
+ * These are curated, user-friendly names that differ from the
+ * formal names in the Radio Browser API. Only countries that
+ * need shortening are included here.
+ *
+ * @example
+ * COUNTRY_SHORT_NAMES['US']; // 'USA'
+ * COUNTRY_SHORT_NAMES['GB']; // 'United Kingdom'
+ * COUNTRY_SHORT_NAMES['KR']; // 'South Korea'
+ */
+export const COUNTRY_SHORT_NAMES: Record<string, string> = {
+  AE: 'UAE',
+  BA: 'Bosnia',
+  BO: 'Bolivia',
+  BN: 'Brunei',
+  CD: 'DR Congo',
+  CF: 'Central African Rep.',
+  CG: 'Congo',
+  CI: 'Ivory Coast',
+  CZ: 'Czechia',
+  DO: 'Dominican Rep.',
+  FK: 'Falkland Islands',
+  FM: 'Micronesia',
+  GB: 'United Kingdom',
+  IR: 'Iran',
+  KP: 'North Korea',
+  KR: 'South Korea',
+  LA: 'Laos',
+  MD: 'Moldova',
+  MK: 'North Macedonia',
+  MM: 'Myanmar',
+  NL: 'Netherlands',
+  PS: 'Palestine',
+  RU: 'Russia',
+  SH: 'Saint Helena',
+  SY: 'Syria',
+  TW: 'Taiwan',
+  TZ: 'Tanzania',
+  US: 'USA',
+  VA: 'Vatican',
+  VE: 'Venezuela',
+  VG: 'British Virgin Is.',
+  VI: 'US Virgin Is.',
+};
+
+/**
+ * Reverse mapping: converts common country names to ISO codes.
+ *
+ * This enables users to search using familiar names like "USA" or "UK"
+ * instead of having to know the ISO codes or formal API names.
+ *
+ * Built dynamically from COUNTRY_SHORT_NAMES, then augmented with
+ * additional aliases (UK, England, America, etc.)
+ */
+const SHORT_NAME_TO_CODE: Record<string, string> = {};
+
+// Populate from COUNTRY_SHORT_NAMES (reversed)
+for (const [code, name] of Object.entries(COUNTRY_SHORT_NAMES)) {
+  SHORT_NAME_TO_CODE[name.toLowerCase()] = code;
+}
+
+// Add common aliases that users might type
+SHORT_NAME_TO_CODE['uk'] = 'GB';
+SHORT_NAME_TO_CODE['england'] = 'GB';
+SHORT_NAME_TO_CODE['britain'] = 'GB';
+SHORT_NAME_TO_CODE['america'] = 'US';
+SHORT_NAME_TO_CODE['united states'] = 'US';
+SHORT_NAME_TO_CODE['korea'] = 'KR'; // Defaults to South Korea
+
+/**
+ * Converts a user-friendly country name to an ISO 3166-1 alpha-2 code.
+ *
+ * This function enables the search feature to accept common names
+ * like "USA", "UK", or "Korea" and convert them to the ISO codes
+ * that the Radio Browser API expects.
+ *
+ * The lookup is case-insensitive and trims whitespace.
+ *
+ * @param name - A country name or alias entered by the user
+ * @returns The ISO country code, or null if not found
+ *
+ * @example
+ * getCountryCodeFromName('USA');    // Returns: 'US'
+ * getCountryCodeFromName('uk');     // Returns: 'GB'
+ * getCountryCodeFromName('Korea');  // Returns: 'KR'
+ * getCountryCodeFromName('France'); // Returns: null (not in aliases)
+ */
+export function getCountryCodeFromName(name: string): string | null {
+  const lower = name.toLowerCase().trim();
+  return SHORT_NAME_TO_CODE[lower] || null;
+}

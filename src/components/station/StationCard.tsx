@@ -3,6 +3,7 @@ import { Play, Pause, Heart, Radio, MapPin } from 'lucide-react';
 import type { Station } from '@/types/station';
 import { usePlayer } from '@/context/PlayerContext';
 import { useI18n } from '@/context/I18nContext';
+import { getShortCountryName } from '@/lib/country-data';
 
 interface StationCardProps {
   station: Station;
@@ -59,12 +60,8 @@ export function StationCard({ station, isFavorite, onToggleFavorite }: StationCa
                 height={10}
                 className="rounded-sm inline-block"
               />
-              {station.country}
-              {station.state && ` · ${station.state}`}
+              {station.state ? `${station.state} · ${getShortCountryName(station.country, station.countrycode)}` : getShortCountryName(station.country, station.countrycode)}
             </span>
-          )}
-          {station.bitrate > 0 && (
-            <span className="text-base-content/40">{station.bitrate} kbps</span>
           )}
         </div>
         {tags.length > 0 && (

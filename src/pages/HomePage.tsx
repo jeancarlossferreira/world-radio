@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TrendingUp, Radio } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 import type { Station } from '@/types/station';
 import { getTopStations, getStationsByTag } from '@/lib/api';
 import { GENRE_TAGS } from '@/lib/constants';
@@ -66,23 +66,18 @@ export function HomePage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <section className="hero bg-base-200 rounded-box mb-8">
-        <div className="hero-content text-center py-12">
-          <div className="max-w-md">
-            <Radio size={40} className="mx-auto mb-4 text-primary" />
-            <h1 className="text-3xl font-bold">{t('app.name')}</h1>
-            <p className="py-3 text-base-content/70">{t('app.tagline')}</p>
-            <div className="w-full max-w-sm mx-auto">
-              <SearchBar
-                value={searchQuery}
-                onChange={setSearchQuery}
-                onSubmit={handleSearchSubmit}
-                placeholder={t('search.placeholderHome')}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="flex justify-center mb-6">
+        <img src="/logo.png" alt="AstroTune" className="h-48 rounded-2xl object-contain" />
+      </div>
+      <p className="text-center text-base-content/70 mb-4">{t('app.tagline')}</p>
+      <div className="max-w-sm mx-auto mb-8">
+        <SearchBar
+          value={searchQuery}
+          onChange={setSearchQuery}
+          onSubmit={handleSearchSubmit}
+          placeholder={t('search.placeholderHome')}
+        />
+      </div>
 
       <section className="mb-8">
         <h2 className="text-lg font-semibold flex items-center gap-2 mb-4">

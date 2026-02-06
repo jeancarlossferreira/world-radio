@@ -1,32 +1,22 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Play, Pause, Square, Radio, Heart, MapPin, Share2 } from 'lucide-react';
 import { usePlayer } from '@/context/PlayerContext';
 import { useFavorites } from '@/hooks/useFavorites';
 import { VolumeSlider } from '@/components/ui/VolumeSlider';
+import { ShareModal } from '@/components/ui/ShareModal';
 import { useI18n } from '@/context/I18nContext';
+import { getShortCountryName } from '@/lib/country-data';
 
 export function PlayerBar() {
   const navigate = useNavigate();
   const { t } = useI18n();
   const { currentStation, isPlaying, isLoading, volume, error, togglePlay, stop, setVolume } = usePlayer();
   const { isFav, toggleFav } = useFavorites();
+  const [shareModalOpen, setShareModalOpen] = useState(false);
 
   const isFavorite = currentStation ? isFav(currentStation.stationuuid) : false;
   const hasGeo = currentStation?.geo_lat !== null && currentStation?.geo_long !== null;
-
-  const handleShare = async () => {
-    if (!currentStation) return;
-    const shareUrl = `${window.location.origin}/?station=${currentStation.stationuuid}`;
-    if (navigator.share) {
-      await navigator.share({
-        title: currentStation.name,
-        text: `${currentStation.name} — ${currentStation.country}`,
-        url: shareUrl,
-      });
-    } else {
-      await navigator.clipboard.writeText(shareUrl);
-    }
-  };
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-base-200 border-t border-base-300 px-4 h-[72px] flex items-center gap-4">
@@ -86,9 +76,7 @@ export function PlayerBar() {
                   <span>{t('player.connecting')}</span>
                 ) : (
                   <span>
-                    {currentStation.country}
-                    {currentStation.state ? ` · ${currentStation.state}` : ''}
-                    {currentStation.bitrate > 0 ? ` · ${currentStation.bitrate} kbps` : ''}
+                    {currentStation.state ? `${currentStation.state} · ${getShortCountryName(currentStation.country, currentStation.countrycode)}` : getShortCountryName(currentStation.country, currentStation.countrycode)}
                   </span>
                 )}
               </div>
@@ -123,13 +111,22 @@ export function PlayerBar() {
         </button>
         <button
           className="btn btn-ghost btn-circle btn-sm"
-          onClick={handleShare}
+          onClick={() => setShareModalOpen(true)}
           disabled={!currentStation}
           title={t('action.share')}
         >
           <Share2 size={18} />
         </button>
       </div>
+
+      {/* Share Modal */}
+      {currentStation && (
+        <ShareModal
+          station={currentStation}
+          isOpen={shareModalOpen}
+          onClose={() => setShareModalOpen(false)}
+        />
+      )}
     </div>
   );
 }

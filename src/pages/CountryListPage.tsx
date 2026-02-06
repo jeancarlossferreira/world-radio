@@ -55,6 +55,9 @@ export function CountryListPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
+      <div className="flex justify-center mb-6">
+        <img src="/logo.png" alt="AstroTune" className="h-48 rounded-2xl object-contain" />
+      </div>
       <h1 className="text-2xl font-bold flex items-center gap-2">
         <Globe size={24} />
         {t('page.browseByCountry')}

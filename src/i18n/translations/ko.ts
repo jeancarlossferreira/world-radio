@@ -2,7 +2,7 @@ import type { TranslationStrings } from '../types';
 
 export const ko: TranslationStrings = {
   // App
-  'app.name': '월드 라디오',
+  'app.name': 'AstroTune',
   'app.tagline': '전 세계 라디오 방송국을 들어보세요',
 
   // Navigation
@@ -54,6 +54,14 @@ export const ko: TranslationStrings = {
   'action.addToFavorites': '즐겨찾기에 추가',
   'action.removeFromFavorites': '즐겨찾기에서 제거',
   'action.share': '공유',
+  'action.copyLink': '링크 복사',
+  'action.qrCode': 'QR 코드',
+  'action.shareNative': '더보기',
+  'action.shareEmail': '이메일',
+  'action.shareWhatsApp': 'WhatsApp',
+  'action.shareTelegram': 'Telegram',
+  'action.shareDiscord': 'Discord',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': '방송국을 찾을 수 없습니다',
@@ -71,6 +79,7 @@ export const ko: TranslationStrings = {
   'settings.title': '설정',
   'settings.theme': '테마',
   'settings.language': '언어',
+  'settings.mapTheme': '지도 스타일',
 
   // Countries
   'countries.count': '라디오 방송국이 있는 {{count}}개 국가',

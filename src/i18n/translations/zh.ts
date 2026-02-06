@@ -2,7 +2,7 @@ import type { TranslationStrings } from '../types';
 
 export const zh: TranslationStrings = {
   // App
-  'app.name': '世界广播',
+  'app.name': 'AstroTune',
   'app.tagline': '收听来自世界各地的广播电台',
 
   // Navigation
@@ -54,6 +54,14 @@ export const zh: TranslationStrings = {
   'action.addToFavorites': '添加到收藏',
   'action.removeFromFavorites': '从收藏中移除',
   'action.share': '分享',
+  'action.copyLink': '复制链接',
+  'action.qrCode': '二维码',
+  'action.shareNative': '更多选项',
+  'action.shareEmail': '邮件',
+  'action.shareWhatsApp': 'WhatsApp',
+  'action.shareTelegram': 'Telegram',
+  'action.shareDiscord': 'Discord',
+  'action.shareGoogleChat': 'Google Chat',
 
   // Empty states
   'empty.noStationsFound': '未找到电台',
@@ -71,6 +79,7 @@ export const zh: TranslationStrings = {
   'settings.title': '设置',
   'settings.theme': '主题',
   'settings.language': '语言',
+  'settings.mapTheme': '地图样式',
 
   // Countries
   'countries.count': '{{count}} 个国家有广播电台',
