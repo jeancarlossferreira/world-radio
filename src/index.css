@@ -1,6 +1,562 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: all;
+  themes: false;
+}
+
+/* ===== DARK THEMES ===== */
+
+[data-theme="dark-blue"] {
+  color-scheme: dark;
+  /* Background colors (dark to darker) */
+  --color-base-100: oklch(20% 0.02 250);
+  --color-base-200: oklch(17% 0.02 250);
+  --color-base-300: oklch(14% 0.02 250);
+  --color-base-content: oklch(95% 0.01 250);
+
+  /* Primary (Blue) */
+  --color-primary: oklch(60% 0.2 250);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Cyan) */
+  --color-secondary: oklch(70% 0.15 200);
+  --color-secondary-content: oklch(15% 0.02 200);
+
+  /* Accent (Light blue) */
+  --color-accent: oklch(75% 0.1 220);
+  --color-accent-content: oklch(15% 0.02 220);
+
+  /* Neutral */
+  --color-neutral: oklch(30% 0.02 250);
+  --color-neutral-content: oklch(90% 0.01 250);
+
+  /* Status colors */
+  --color-info: oklch(70% 0.15 220);
+  --color-success: oklch(70% 0.15 150);
+  --color-warning: oklch(80% 0.15 85);
+  --color-error: oklch(65% 0.2 25);
+
+  /* Shorthand vars for ThemePicker swatches */
+  --p: 60% 0.2 250;
+  --s: 70% 0.15 200;
+  --a: 75% 0.1 220;
+  --b1: 20% 0.02 250;
+  --b2: 17% 0.02 250;
+  --b3: 14% 0.02 250;
+  --bc: 95% 0.01 250;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="dark-green"] {
+  color-scheme: dark;
+  /* Background colors (dark forest) */
+  --color-base-100: oklch(20% 0.03 150);
+  --color-base-200: oklch(17% 0.03 150);
+  --color-base-300: oklch(14% 0.03 150);
+  --color-base-content: oklch(95% 0.02 150);
+
+  /* Primary (Green) */
+  --color-primary: oklch(65% 0.2 145);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Teal) */
+  --color-secondary: oklch(65% 0.15 180);
+  --color-secondary-content: oklch(15% 0.02 180);
+
+  /* Accent (Lime) */
+  --color-accent: oklch(80% 0.18 120);
+  --color-accent-content: oklch(15% 0.02 120);
+
+  /* Neutral */
+  --color-neutral: oklch(30% 0.02 150);
+  --color-neutral-content: oklch(90% 0.01 150);
+
+  /* Status colors */
+  --color-info: oklch(70% 0.15 220);
+  --color-success: oklch(70% 0.15 150);
+  --color-warning: oklch(80% 0.15 85);
+  --color-error: oklch(65% 0.2 25);
+
+  /* Shorthand vars */
+  --p: 65% 0.2 145;
+  --s: 65% 0.15 180;
+  --a: 80% 0.18 120;
+  --b1: 20% 0.03 150;
+  --b2: 17% 0.03 150;
+  --b3: 14% 0.03 150;
+  --bc: 95% 0.02 150;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="dark-purple"] {
+  color-scheme: dark;
+  /* Background colors (dark violet) */
+  --color-base-100: oklch(18% 0.04 280);
+  --color-base-200: oklch(15% 0.04 280);
+  --color-base-300: oklch(12% 0.04 280);
+  --color-base-content: oklch(95% 0.02 280);
+
+  /* Primary (Purple) */
+  --color-primary: oklch(60% 0.22 280);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Pink) */
+  --color-secondary: oklch(70% 0.18 330);
+  --color-secondary-content: oklch(15% 0.02 330);
+
+  /* Accent (Lavender) */
+  --color-accent: oklch(80% 0.1 290);
+  --color-accent-content: oklch(15% 0.02 290);
+
+  /* Neutral */
+  --color-neutral: oklch(30% 0.03 280);
+  --color-neutral-content: oklch(90% 0.01 280);
+
+  /* Status colors */
+  --color-info: oklch(70% 0.15 220);
+  --color-success: oklch(70% 0.15 150);
+  --color-warning: oklch(80% 0.15 85);
+  --color-error: oklch(65% 0.2 25);
+
+  /* Shorthand vars */
+  --p: 60% 0.22 280;
+  --s: 70% 0.18 330;
+  --a: 80% 0.1 290;
+  --b1: 18% 0.04 280;
+  --b2: 15% 0.04 280;
+  --b3: 12% 0.04 280;
+  --bc: 95% 0.02 280;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="dark-red"] {
+  color-scheme: dark;
+  /* Background colors (dark burgundy) */
+  --color-base-100: oklch(18% 0.04 15);
+  --color-base-200: oklch(15% 0.04 15);
+  --color-base-300: oklch(12% 0.04 15);
+  --color-base-content: oklch(95% 0.01 15);
+
+  /* Primary (Red) */
+  --color-primary: oklch(60% 0.22 25);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Orange) */
+  --color-secondary: oklch(70% 0.18 50);
+  --color-secondary-content: oklch(15% 0.02 50);
+
+  /* Accent (Coral) */
+  --color-accent: oklch(75% 0.15 35);
+  --color-accent-content: oklch(15% 0.02 35);
+
+  /* Neutral */
+  --color-neutral: oklch(30% 0.03 15);
+  --color-neutral-content: oklch(90% 0.01 15);
+
+  /* Status colors */
+  --color-info: oklch(70% 0.15 220);
+  --color-success: oklch(70% 0.15 150);
+  --color-warning: oklch(80% 0.15 85);
+  --color-error: oklch(65% 0.2 25);
+
+  /* Shorthand vars */
+  --p: 60% 0.22 25;
+  --s: 70% 0.18 50;
+  --a: 75% 0.15 35;
+  --b1: 18% 0.04 15;
+  --b2: 15% 0.04 15;
+  --b3: 12% 0.04 15;
+  --bc: 95% 0.01 15;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="dark-gray"] {
+  color-scheme: dark;
+  /* Background colors (charcoal) */
+  --color-base-100: oklch(22% 0.01 250);
+  --color-base-200: oklch(18% 0.01 250);
+  --color-base-300: oklch(14% 0.01 250);
+  --color-base-content: oklch(95% 0 0);
+
+  /* Primary (Gray) */
+  --color-primary: oklch(55% 0.02 250);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Blue-gray) */
+  --color-secondary: oklch(60% 0.05 240);
+  --color-secondary-content: oklch(15% 0.01 240);
+
+  /* Accent (White) */
+  --color-accent: oklch(95% 0 0);
+  --color-accent-content: oklch(15% 0.01 0);
+
+  /* Neutral */
+  --color-neutral: oklch(30% 0.01 250);
+  --color-neutral-content: oklch(90% 0 0);
+
+  /* Status colors */
+  --color-info: oklch(70% 0.15 220);
+  --color-success: oklch(70% 0.15 150);
+  --color-warning: oklch(80% 0.15 85);
+  --color-error: oklch(65% 0.2 25);
+
+  /* Shorthand vars */
+  --p: 55% 0.02 250;
+  --s: 60% 0.05 240;
+  --a: 95% 0 0;
+  --b1: 22% 0.01 250;
+  --b2: 18% 0.01 250;
+  --b3: 14% 0.01 250;
+  --bc: 95% 0 0;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="pure-black"] {
+  color-scheme: dark;
+  /* Background colors (pure black) */
+  --color-base-100: oklch(10% 0 0);
+  --color-base-200: oklch(7% 0 0);
+  --color-base-300: oklch(4% 0 0);
+  --color-base-content: oklch(98% 0 0);
+
+  /* Primary (White) */
+  --color-primary: oklch(95% 0 0);
+  --color-primary-content: oklch(10% 0 0);
+
+  /* Secondary (Gray) */
+  --color-secondary: oklch(60% 0 0);
+  --color-secondary-content: oklch(10% 0 0);
+
+  /* Accent (Cyan) */
+  --color-accent: oklch(75% 0.15 195);
+  --color-accent-content: oklch(10% 0 0);
+
+  /* Neutral */
+  --color-neutral: oklch(20% 0 0);
+  --color-neutral-content: oklch(90% 0 0);
+
+  /* Status colors */
+  --color-info: oklch(70% 0.15 220);
+  --color-success: oklch(70% 0.15 150);
+  --color-warning: oklch(80% 0.15 85);
+  --color-error: oklch(65% 0.2 25);
+
+  /* Shorthand vars */
+  --p: 95% 0 0;
+  --s: 60% 0 0;
+  --a: 75% 0.15 195;
+  --b1: 10% 0 0;
+  --b2: 7% 0 0;
+  --b3: 4% 0 0;
+  --bc: 98% 0 0;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+/* ===== LIGHT THEMES ===== */
+
+[data-theme="light-blue"] {
+  color-scheme: light;
+  /* Background colors (white/blue tint) */
+  --color-base-100: oklch(98% 0.01 250);
+  --color-base-200: oklch(95% 0.02 250);
+  --color-base-300: oklch(92% 0.02 250);
+  --color-base-content: oklch(20% 0.02 250);
+
+  /* Primary (Blue) */
+  --color-primary: oklch(55% 0.22 250);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Navy) */
+  --color-secondary: oklch(35% 0.15 250);
+  --color-secondary-content: oklch(98% 0 0);
+
+  /* Accent (Sky) */
+  --color-accent: oklch(70% 0.12 220);
+  --color-accent-content: oklch(15% 0.02 220);
+
+  /* Neutral */
+  --color-neutral: oklch(40% 0.02 250);
+  --color-neutral-content: oklch(98% 0 0);
+
+  /* Status colors */
+  --color-info: oklch(55% 0.18 220);
+  --color-success: oklch(55% 0.18 150);
+  --color-warning: oklch(70% 0.18 85);
+  --color-error: oklch(55% 0.22 25);
+
+  /* Shorthand vars */
+  --p: 55% 0.22 250;
+  --s: 35% 0.15 250;
+  --a: 70% 0.12 220;
+  --b1: 98% 0.01 250;
+  --b2: 95% 0.02 250;
+  --b3: 92% 0.02 250;
+  --bc: 20% 0.02 250;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="light-green"] {
+  color-scheme: light;
+  /* Background colors (white/green tint) */
+  --color-base-100: oklch(98% 0.01 150);
+  --color-base-200: oklch(95% 0.02 150);
+  --color-base-300: oklch(92% 0.02 150);
+  --color-base-content: oklch(20% 0.02 150);
+
+  /* Primary (Green) */
+  --color-primary: oklch(50% 0.18 150);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Teal) */
+  --color-secondary: oklch(45% 0.12 180);
+  --color-secondary-content: oklch(98% 0 0);
+
+  /* Accent (Mint) */
+  --color-accent: oklch(80% 0.1 165);
+  --color-accent-content: oklch(20% 0.02 165);
+
+  /* Neutral */
+  --color-neutral: oklch(40% 0.02 150);
+  --color-neutral-content: oklch(98% 0 0);
+
+  /* Status colors */
+  --color-info: oklch(55% 0.18 220);
+  --color-success: oklch(55% 0.18 150);
+  --color-warning: oklch(70% 0.18 85);
+  --color-error: oklch(55% 0.22 25);
+
+  /* Shorthand vars */
+  --p: 50% 0.18 150;
+  --s: 45% 0.12 180;
+  --a: 80% 0.1 165;
+  --b1: 98% 0.01 150;
+  --b2: 95% 0.02 150;
+  --b3: 92% 0.02 150;
+  --bc: 20% 0.02 150;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="light-pink"] {
+  color-scheme: light;
+  /* Background colors (white/pink tint) */
+  --color-base-100: oklch(98% 0.01 340);
+  --color-base-200: oklch(95% 0.02 340);
+  --color-base-300: oklch(92% 0.03 340);
+  --color-base-content: oklch(20% 0.02 340);
+
+  /* Primary (Pink) */
+  --color-primary: oklch(60% 0.2 340);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Rose) */
+  --color-secondary: oklch(55% 0.18 10);
+  --color-secondary-content: oklch(98% 0 0);
+
+  /* Accent (Magenta) */
+  --color-accent: oklch(65% 0.22 320);
+  --color-accent-content: oklch(98% 0 0);
+
+  /* Neutral */
+  --color-neutral: oklch(40% 0.02 340);
+  --color-neutral-content: oklch(98% 0 0);
+
+  /* Status colors */
+  --color-info: oklch(55% 0.18 220);
+  --color-success: oklch(55% 0.18 150);
+  --color-warning: oklch(70% 0.18 85);
+  --color-error: oklch(55% 0.22 25);
+
+  /* Shorthand vars */
+  --p: 60% 0.2 340;
+  --s: 55% 0.18 10;
+  --a: 65% 0.22 320;
+  --b1: 98% 0.01 340;
+  --b2: 95% 0.02 340;
+  --b3: 92% 0.03 340;
+  --bc: 20% 0.02 340;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="light-yellow"] {
+  color-scheme: light;
+  /* Background colors (cream) */
+  --color-base-100: oklch(97% 0.02 85);
+  --color-base-200: oklch(94% 0.03 85);
+  --color-base-300: oklch(91% 0.04 85);
+  --color-base-content: oklch(25% 0.03 60);
+
+  /* Primary (Orange) */
+  --color-primary: oklch(65% 0.2 50);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Brown) */
+  --color-secondary: oklch(45% 0.1 60);
+  --color-secondary-content: oklch(98% 0 0);
+
+  /* Accent (Gold) */
+  --color-accent: oklch(75% 0.15 85);
+  --color-accent-content: oklch(25% 0.03 85);
+
+  /* Neutral */
+  --color-neutral: oklch(40% 0.05 60);
+  --color-neutral-content: oklch(98% 0 0);
+
+  /* Status colors */
+  --color-info: oklch(55% 0.18 220);
+  --color-success: oklch(55% 0.18 150);
+  --color-warning: oklch(70% 0.18 85);
+  --color-error: oklch(55% 0.22 25);
+
+  /* Shorthand vars */
+  --p: 65% 0.2 50;
+  --s: 45% 0.1 60;
+  --a: 75% 0.15 85;
+  --b1: 97% 0.02 85;
+  --b2: 94% 0.03 85;
+  --b3: 91% 0.04 85;
+  --bc: 25% 0.03 60;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="light-gray"] {
+  color-scheme: light;
+  /* Background colors (off-white) */
+  --color-base-100: oklch(97% 0.005 250);
+  --color-base-200: oklch(94% 0.01 250);
+  --color-base-300: oklch(91% 0.01 250);
+  --color-base-content: oklch(20% 0.01 250);
+
+  /* Primary (Gray) */
+  --color-primary: oklch(45% 0.02 250);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Slate) */
+  --color-secondary: oklch(50% 0.05 250);
+  --color-secondary-content: oklch(98% 0 0);
+
+  /* Accent (Blue) */
+  --color-accent: oklch(55% 0.15 250);
+  --color-accent-content: oklch(98% 0 0);
+
+  /* Neutral */
+  --color-neutral: oklch(35% 0.01 250);
+  --color-neutral-content: oklch(98% 0 0);
+
+  /* Status colors */
+  --color-info: oklch(55% 0.18 220);
+  --color-success: oklch(55% 0.18 150);
+  --color-warning: oklch(70% 0.18 85);
+  --color-error: oklch(55% 0.22 25);
+
+  /* Shorthand vars */
+  --p: 45% 0.02 250;
+  --s: 50% 0.05 250;
+  --a: 55% 0.15 250;
+  --b1: 97% 0.005 250;
+  --b2: 94% 0.01 250;
+  --b3: 91% 0.01 250;
+  --bc: 20% 0.01 250;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+}
+
+[data-theme="pure-white"] {
+  color-scheme: light;
+  /* Background colors (pure white) */
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97% 0 0);
+  --color-base-300: oklch(94% 0 0);
+  --color-base-content: oklch(15% 0 0);
+
+  /* Primary (Blue) */
+  --color-primary: oklch(55% 0.2 250);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary (Purple) */
+  --color-secondary: oklch(50% 0.18 280);
+  --color-secondary-content: oklch(98% 0 0);
+
+  /* Accent (Teal) */
+  --color-accent: oklch(55% 0.15 180);
+  --color-accent-content: oklch(98% 0 0);
+
+  /* Neutral */
+  --color-neutral: oklch(30% 0 0);
+  --color-neutral-content: oklch(98% 0 0);
+
+  /* Status colors */
+  --color-info: oklch(55% 0.18 220);
+  --color-success: oklch(55% 0.18 150);
+  --color-warning: oklch(70% 0.18 85);
+  --color-error: oklch(55% 0.22 25);
+
+  /* Shorthand vars */
+  --p: 55% 0.2 250;
+  --s: 50% 0.18 280;
+  --a: 55% 0.15 180;
+  --b1: 100% 0 0;
+  --b2: 97% 0 0;
+  --b3: 94% 0 0;
+  --bc: 15% 0 0;
+
+  /* Layout */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
 }
 
 html, body, #root {
