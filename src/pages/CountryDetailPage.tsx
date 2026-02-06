@@ -46,6 +46,9 @@ export function CountryDetailPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
+      <div className="flex justify-center mb-6">
+        <img src="/logo.png" alt="AstroTune" className="h-48 rounded-2xl object-contain" />
+      </div>
       <Link to="/countries" className="btn btn-ghost btn-sm gap-1 mb-4">
         <ArrowLeft size={18} />
         {t('action.allCountries')}
