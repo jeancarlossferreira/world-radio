@@ -46,7 +46,7 @@ export function AppShell() {
           >
             <Menu size={20} />
           </button>
-          <span className="ml-2 font-semibold text-primary">World Radio</span>
+          <img src="/logo.png" alt="AstroTune" className="h-8 ml-2" />
         </header>
         {/* Main content - padding bottom for player bar */}
         <main className="flex-1 overflow-y-auto bg-base-100 pb-[72px]">

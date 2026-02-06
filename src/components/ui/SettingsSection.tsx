@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Settings, ChevronDown, ChevronUp } from 'lucide-react';
 import { ThemePicker } from './ThemePicker';
 import { LanguagePicker } from './LanguagePicker';
+import { MapThemePicker } from './MapThemePicker';
 import { useI18n } from '@/context/I18nContext';
 
 export function SettingsSection() {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const { t } = useI18n();
 
   return (
@@ -28,6 +29,7 @@ export function SettingsSection() {
             </label>
             <ThemePicker />
           </div>
+          <MapThemePicker />
           <LanguagePicker />
         </div>
       )}
