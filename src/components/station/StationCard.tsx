@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Play, Pause, Heart, Radio, MapPin } from 'lucide-react';
 import type { Station } from '@/types/station';
 import { usePlayer } from '@/context/PlayerContext';
 import { useI18n } from '@/context/I18nContext';
-import { getShortCountryName } from '@/lib/country-data';
 
 interface StationCardProps {
   station: Station;
@@ -14,9 +14,12 @@ interface StationCardProps {
 export function StationCard({ station, isFavorite, onToggleFavorite }: StationCardProps) {
   const { currentStation, isPlaying, isLoading, togglePlay } = usePlayer();
   const navigate = useNavigate();
-  const { t } = useI18n();
+  const { t, localizeCountry, localizeTag } = useI18n();
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const isActive = currentStation?.stationuuid === station.stationuuid;
   const tags = station.tags ? station.tags.split(',').filter(Boolean).slice(0, 3) : [];
+  const countryName = station.countrycode ? localizeCountry(station.countrycode) : '';
 
   return (
     <div className={`card card-side card-sm bg-base-200 group relative ${isActive ? 'ring-1 ring-primary bg-primary/10' : ''}`}>
@@ -25,15 +28,16 @@ export function StationCard({ station, isFavorite, onToggleFavorite }: StationCa
         onClick={() => togglePlay(station)}
       >
         <div className="w-full h-full bg-base-300 flex items-center justify-center text-base-content/30">
-          {station.favicon ? (
+          {(!station.favicon || imgError || !imgLoaded) && <Radio size={20} />}
+          {station.favicon && !imgError && (
             <img
               src={station.favicon}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover"
-              onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+              className={`absolute inset-0 w-full h-full object-cover ${imgLoaded ? '' : 'opacity-0'}`}
+              onLoad={() => setImgLoaded(true)}
+              onError={() => setImgError(true)}
             />
-          ) : null}
-          <Radio size={20} />
+          )}
         </div>
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           {isActive && isLoading ? (
@@ -60,14 +64,14 @@ export function StationCard({ station, isFavorite, onToggleFavorite }: StationCa
                 height={10}
                 className="rounded-sm inline-block"
               />
-              {station.state ? `${station.state} · ${getShortCountryName(station.country, station.countrycode)}` : getShortCountryName(station.country, station.countrycode)}
+              {station.state ? `${station.state} · ${countryName}` : countryName}
             </span>
           )}
         </div>
         {tags.length > 0 && (
           <div className="flex gap-1 mt-0.5">
             {tags.map(tag => (
-              <span key={tag} className="badge badge-sm badge-ghost">{tag.trim()}</span>
+              <span key={tag} className="badge badge-sm badge-ghost">{localizeTag(tag.trim())}</span>
             ))}
           </div>
         )}

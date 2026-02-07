@@ -59,9 +59,12 @@ export const es: TranslationStrings = {
   'action.shareNative': 'Más opciones',
   'action.shareEmail': 'Correo',
   'action.shareWhatsApp': 'WhatsApp',
-  'action.shareTelegram': 'Telegram',
+  'action.shareTwitter': 'Twitter',
+  'action.shareFacebook': 'Facebook',
+  'action.shareInstagram': 'Instagram',
   'action.shareDiscord': 'Discord',
   'action.shareGoogleChat': 'Google Chat',
+  'action.stationWebsite': 'Sitio web de la estación',
 
   // Empty states
   'empty.noStationsFound': 'No se encontraron estaciones',
@@ -74,12 +77,21 @@ export const es: TranslationStrings = {
   // Player
   'player.noStation': 'Ninguna estación seleccionada',
   'player.connecting': 'Conectando...',
+  'player.mute': 'Silenciar',
+  'player.unmute': 'Activar sonido',
 
   // Settings
   'settings.title': 'Configuración',
   'settings.theme': 'Tema',
   'settings.language': 'Idioma',
-  'settings.mapTheme': 'Estilo del mapa',
+  'settings.mapTheme':  'Estilo del mapa',
+
+  // Sidebar
+  'sidebar.expand': 'Expandir menú',
+  'sidebar.collapse': 'Colapsar menú',
+
+  // Share
+  'share.message': '¡Hey, mira lo que estoy escuchando en AstroTune!',
 
   // Countries
   'countries.count': '{{count}} países con estaciones de radio',

@@ -19,7 +19,7 @@ export function SettingsSection() {
           <Settings size={16} />
           {t('settings.title')}
         </span>
-        {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        {expanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
       </button>
       {expanded && (
         <div className="px-3 pb-3 space-y-2">

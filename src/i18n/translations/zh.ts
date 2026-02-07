@@ -59,9 +59,12 @@ export const zh: TranslationStrings = {
   'action.shareNative': '更多选项',
   'action.shareEmail': '邮件',
   'action.shareWhatsApp': 'WhatsApp',
-  'action.shareTelegram': 'Telegram',
+  'action.shareTwitter': 'Twitter',
+  'action.shareFacebook': 'Facebook',
+  'action.shareInstagram': 'Instagram',
   'action.shareDiscord': 'Discord',
   'action.shareGoogleChat': 'Google Chat',
+  'action.stationWebsite': '电台网站',
 
   // Empty states
   'empty.noStationsFound': '未找到电台',
@@ -74,12 +77,21 @@ export const zh: TranslationStrings = {
   // Player
   'player.noStation': '未选择电台',
   'player.connecting': '连接中...',
+  'player.mute': '静音',
+  'player.unmute': '取消静音',
 
   // Settings
   'settings.title': '设置',
   'settings.theme': '主题',
   'settings.language': '语言',
-  'settings.mapTheme': '地图样式',
+  'settings.mapTheme':  '地图样式',
+
+  // Sidebar
+  'sidebar.expand': '展开菜单',
+  'sidebar.collapse': '收起菜单',
+
+  // Share
+  'share.message': '嘿，看看我在 AstroTune 上听什么！',
 
   // Countries
   'countries.count': '{{count}} 个国家有广播电台',

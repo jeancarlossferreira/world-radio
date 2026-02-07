@@ -59,9 +59,12 @@ export const ko: TranslationStrings = {
   'action.shareNative': '더보기',
   'action.shareEmail': '이메일',
   'action.shareWhatsApp': 'WhatsApp',
-  'action.shareTelegram': 'Telegram',
+  'action.shareTwitter': 'Twitter',
+  'action.shareFacebook': 'Facebook',
+  'action.shareInstagram': 'Instagram',
   'action.shareDiscord': 'Discord',
   'action.shareGoogleChat': 'Google Chat',
+  'action.stationWebsite': '방송국 웹사이트',
 
   // Empty states
   'empty.noStationsFound': '방송국을 찾을 수 없습니다',
@@ -74,12 +77,21 @@ export const ko: TranslationStrings = {
   // Player
   'player.noStation': '선택된 방송국 없음',
   'player.connecting': '연결 중...',
+  'player.mute': '음소거',
+  'player.unmute': '음소거 해제',
 
   // Settings
   'settings.title': '설정',
   'settings.theme': '테마',
   'settings.language': '언어',
-  'settings.mapTheme': '지도 스타일',
+  'settings.mapTheme':  '지도 스타일',
+
+  // Sidebar
+  'sidebar.expand': '메뉴 펼치기',
+  'sidebar.collapse': '메뉴 접기',
+
+  // Share
+  'share.message': '이봐, AstroTune에서 뭘 듣고 있는지 봐!',
 
   // Countries
   'countries.count': '라디오 방송국이 있는 {{count}}개 국가',

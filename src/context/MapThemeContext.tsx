@@ -9,7 +9,7 @@ interface MapThemeContextValue {
 
 const MapThemeContext = createContext<MapThemeContextValue | null>(null);
 
-const STORAGE_KEY = 'world-radio-map-theme';
+const STORAGE_KEY = 'astrotune-map-theme';
 
 export const mapThemeOptions: { value: MapTheme; label: string; url: string; attribution: string }[] = [
   {

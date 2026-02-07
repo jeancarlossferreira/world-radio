@@ -37,6 +37,7 @@ import type { Locale, TranslationStrings, TranslationKey } from '@/i18n/types';
 import { DEFAULT_LOCALE, getLocaleInfo, isValidLocale } from '@/i18n/locales';
 import { loadTranslations, en } from '@/i18n/translations';
 import { STORAGE_KEYS } from '@/lib/constants';
+import { getLocalizedCountryName, getLocalizedTag, getLocalizedTags } from '@/lib/localization';
 
 /**
  * The shape of the i18n context value provided to consumers.
@@ -45,12 +46,18 @@ import { STORAGE_KEYS } from '@/lib/constants';
  * @property setLocale - Function to change the language
  * @property t - Translation function: takes a key and returns the translated string
  * @property isLoading - True while translation files are being loaded
+ * @property localizeCountry - Translate a country code to localized name
+ * @property localizeTag - Translate a single genre/tag
+ * @property localizeTags - Translate comma-separated tags
  */
 interface I18nContextValue {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: TranslationKey, params?: Record<string, string | number>) => string;
   isLoading: boolean;
+  localizeCountry: (countryCode: string) => string;
+  localizeTag: (tag: string) => string;
+  localizeTags: (tags: string) => string;
 }
 
 /**
@@ -260,8 +267,30 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     return text;
   }, [translations]);
 
+  /**
+   * Localizes a country code to the current locale's name.
+   * Uses the browser's Intl.DisplayNames API.
+   */
+  const localizeCountry = useCallback((countryCode: string): string => {
+    return getLocalizedCountryName(countryCode, locale);
+  }, [locale]);
+
+  /**
+   * Localizes a single genre/tag to the current locale.
+   */
+  const localizeTag = useCallback((tag: string): string => {
+    return getLocalizedTag(tag, locale);
+  }, [locale]);
+
+  /**
+   * Localizes a comma-separated list of tags to the current locale.
+   */
+  const localizeTags = useCallback((tags: string): string => {
+    return getLocalizedTags(tags, locale);
+  }, [locale]);
+
   return (
-    <I18nContext.Provider value={{ locale, setLocale, t, isLoading }}>
+    <I18nContext.Provider value={{ locale, setLocale, t, isLoading, localizeCountry, localizeTag, localizeTags }}>
       {children}
     </I18nContext.Provider>
   );

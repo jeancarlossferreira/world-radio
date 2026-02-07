@@ -59,9 +59,12 @@ export const ja: TranslationStrings = {
   'action.shareNative': 'その他',
   'action.shareEmail': 'メール',
   'action.shareWhatsApp': 'WhatsApp',
-  'action.shareTelegram': 'Telegram',
+  'action.shareTwitter': 'Twitter',
+  'action.shareFacebook': 'Facebook',
+  'action.shareInstagram': 'Instagram',
   'action.shareDiscord': 'Discord',
   'action.shareGoogleChat': 'Google Chat',
+  'action.stationWebsite': '放送局サイト',
 
   // Empty states
   'empty.noStationsFound': '放送局が見つかりません',
@@ -74,12 +77,21 @@ export const ja: TranslationStrings = {
   // Player
   'player.noStation': '放送局が選択されていません',
   'player.connecting': '接続中...',
+  'player.mute': 'ミュート',
+  'player.unmute': 'ミュート解除',
 
   // Settings
   'settings.title': '設定',
   'settings.theme': 'テーマ',
   'settings.language': '言語',
-  'settings.mapTheme': '地図スタイル',
+  'settings.mapTheme':  '地図スタイル',
+
+  // Sidebar
+  'sidebar.expand': 'メニューを展開',
+  'sidebar.collapse': 'メニューを折りたたむ',
+
+  // Share
+  'share.message': 'ねえ、AstroTuneで何を聴いてるか見て！',
 
   // Countries
   'countries.count': '{{count}}か国のラジオ局',

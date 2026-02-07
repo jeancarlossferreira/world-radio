@@ -57,9 +57,12 @@ export interface TranslationStrings {
   'action.shareNative': string;
   'action.shareEmail': string;
   'action.shareWhatsApp': string;
-  'action.shareTelegram': string;
+  'action.shareTwitter': string;
+  'action.shareFacebook': string;
+  'action.shareInstagram': string;
   'action.shareDiscord': string;
   'action.shareGoogleChat': string;
+  'action.stationWebsite': string;
 
   // Empty states
   'empty.noStationsFound': string;
@@ -72,12 +75,21 @@ export interface TranslationStrings {
   // Player
   'player.noStation': string;
   'player.connecting': string;
+  'player.mute': string;
+  'player.unmute': string;
 
   // Settings
   'settings.title': string;
   'settings.theme': string;
   'settings.language': string;
   'settings.mapTheme': string;
+
+  // Sidebar
+  'sidebar.expand': string;
+  'sidebar.collapse': string;
+
+  // Share
+  'share.message': string;
 
   // Countries
   'countries.count': string;

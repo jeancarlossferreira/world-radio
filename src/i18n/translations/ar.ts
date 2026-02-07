@@ -59,9 +59,12 @@ export const ar: TranslationStrings = {
   'action.shareNative': 'المزيد',
   'action.shareEmail': 'البريد الإلكتروني',
   'action.shareWhatsApp': 'WhatsApp',
-  'action.shareTelegram': 'Telegram',
+  'action.shareTwitter': 'Twitter',
+  'action.shareFacebook': 'Facebook',
+  'action.shareInstagram': 'Instagram',
   'action.shareDiscord': 'Discord',
   'action.shareGoogleChat': 'Google Chat',
+  'action.stationWebsite': 'موقع المحطة',
 
   // Empty states
   'empty.noStationsFound': 'لم يتم العثور على محطات',
@@ -74,12 +77,21 @@ export const ar: TranslationStrings = {
   // Player
   'player.noStation': 'لم يتم اختيار محطة',
   'player.connecting': 'جاري الاتصال...',
+  'player.mute': 'كتم',
+  'player.unmute': 'إلغاء كتم',
 
   // Settings
   'settings.title': 'الإعدادات',
   'settings.theme': 'المظهر',
   'settings.language': 'اللغة',
-  'settings.mapTheme': 'نمط الخريطة',
+  'settings.mapTheme':  'نمط الخريطة',
+
+  // Sidebar
+  'sidebar.expand': 'توسيع القائمة',
+  'sidebar.collapse': 'طي القائمة',
+
+  // Share
+  'share.message': 'مرحباً، انظر ماذا أستمع إليه على AstroTune!',
 
   // Countries
   'countries.count': '{{count}} دولة لديها محطات راديو',

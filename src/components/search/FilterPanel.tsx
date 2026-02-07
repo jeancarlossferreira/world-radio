@@ -1,5 +1,4 @@
 import { SlidersHorizontal } from 'lucide-react';
-import { useState } from 'react';
 import { useI18n } from '@/context/I18nContext';
 
 interface FilterPanelProps {
@@ -17,17 +16,17 @@ export function FilterPanel({
   tag, country, codec,
   onTagChange, onCountryChange, onCodecChange,
 }: FilterPanelProps) {
-  const [expanded, setExpanded] = useState(false);
   const { t } = useI18n();
 
   return (
-    <div className="mt-3">
-      <button className="btn btn-ghost btn-sm gap-2" onClick={() => setExpanded(!expanded)}>
+    <div className="collapse collapse-arrow bg-base-200 rounded-box mt-3">
+      <input type="checkbox" />
+      <div className="collapse-title text-sm font-medium flex items-center gap-2 min-h-0 py-2">
         <SlidersHorizontal size={16} />
         {t('filter.filters')}
-      </button>
-      {expanded && (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
+      </div>
+      <div className="collapse-content">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
           <div className="form-control">
             <label className="label">
               <span className="label-text text-xs uppercase">{t('filter.genreTag')}</span>
@@ -67,7 +66,7 @@ export function FilterPanel({
             </select>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Play, Pause, Square, Radio, Heart, MapPin, Share2 } from 'lucide-react';
+import { Play, Pause, Square, Radio, Heart, MapPin, Share2, Info } from 'lucide-react';
 import { usePlayer } from '@/context/PlayerContext';
 import { useFavorites } from '@/hooks/useFavorites';
 import { VolumeSlider } from '@/components/ui/VolumeSlider';
 import { ShareModal } from '@/components/ui/ShareModal';
 import { useI18n } from '@/context/I18nContext';
-import { getShortCountryName } from '@/lib/country-data';
 
 export function PlayerBar() {
   const navigate = useNavigate();
-  const { t } = useI18n();
+  const { t, localizeCountry } = useI18n();
   const { currentStation, isPlaying, isLoading, volume, error, togglePlay, stop, setVolume } = usePlayer();
   const { isFav, toggleFav } = useFavorites();
   const [shareModalOpen, setShareModalOpen] = useState(false);
@@ -19,7 +18,7 @@ export function PlayerBar() {
   const hasGeo = currentStation?.geo_lat !== null && currentStation?.geo_long !== null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-base-200 border-t border-base-300 px-4 h-[72px] flex items-center gap-4">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-base-100 border-t border-base-300 px-4 h-[72px] flex items-center gap-4">
       {/* Play Controls */}
       <div className="flex items-center gap-1">
         <button
@@ -76,7 +75,7 @@ export function PlayerBar() {
                   <span>{t('player.connecting')}</span>
                 ) : (
                   <span>
-                    {currentStation.state ? `${currentStation.state} · ${getShortCountryName(currentStation.country, currentStation.countrycode)}` : getShortCountryName(currentStation.country, currentStation.countrycode)}
+                    {currentStation.state ? `${currentStation.state} · ${localizeCountry(currentStation.countrycode)}` : localizeCountry(currentStation.countrycode)}
                   </span>
                 )}
               </div>
@@ -87,8 +86,20 @@ export function PlayerBar() {
         </div>
       </div>
 
-      {/* Favorite, Map & Share buttons */}
+      {/* Info, Favorite, Map & Share buttons */}
       <div className="flex items-center gap-1">
+        <button
+          className="btn btn-ghost btn-circle btn-sm"
+          onClick={() => {
+            if (currentStation?.homepage) {
+              window.open(currentStation.homepage, '_blank', 'noopener,noreferrer');
+            }
+          }}
+          disabled={!currentStation || !currentStation.homepage}
+          title={t('action.stationWebsite')}
+        >
+          <Info size={18} />
+        </button>
         <button
           className={`btn btn-ghost btn-circle btn-sm ${isFavorite ? 'text-primary' : ''}`}
           onClick={() => currentStation && toggleFav(currentStation)}

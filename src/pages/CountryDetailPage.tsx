@@ -8,11 +8,10 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ErrorMessage } from '@/components/ui/ErrorMessage';
 import { useFavorites } from '@/hooks/useFavorites';
 import { useI18n } from '@/context/I18nContext';
-import { getShortCountryName } from '@/lib/country-data';
 
 export function CountryDetailPage() {
   const { code } = useParams<{ code: string }>();
-  const { t } = useI18n();
+  const { t, localizeCountry } = useI18n();
   const [stations, setStations] = useState<Station[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -42,7 +41,7 @@ export function CountryDetailPage() {
     load(0);
   }, [load]);
 
-  const countryName = stations[0] ? getShortCountryName(stations[0].country, stations[0].countrycode) : code?.toUpperCase() || '';
+  const countryName = code ? localizeCountry(code) : '';
 
   return (
     <div className="p-6 max-w-6xl mx-auto">

@@ -59,9 +59,12 @@ export const ru: TranslationStrings = {
   'action.shareNative': 'Ещё',
   'action.shareEmail': 'Эл. почта',
   'action.shareWhatsApp': 'WhatsApp',
-  'action.shareTelegram': 'Telegram',
+  'action.shareTwitter': 'Twitter',
+  'action.shareFacebook': 'Facebook',
+  'action.shareInstagram': 'Instagram',
   'action.shareDiscord': 'Discord',
   'action.shareGoogleChat': 'Google Chat',
+  'action.stationWebsite': 'Сайт станции',
 
   // Empty states
   'empty.noStationsFound': 'Станции не найдены',
@@ -74,12 +77,21 @@ export const ru: TranslationStrings = {
   // Player
   'player.noStation': 'Станция не выбрана',
   'player.connecting': 'Подключение...',
+  'player.mute': 'Без звука',
+  'player.unmute': 'Включить звук',
 
   // Settings
   'settings.title': 'Настройки',
   'settings.theme': 'Тема',
   'settings.language': 'Язык',
-  'settings.mapTheme': 'Стиль карты',
+  'settings.mapTheme':  'Стиль карты',
+
+  // Sidebar
+  'sidebar.expand': 'Развернуть меню',
+  'sidebar.collapse': 'Свернуть меню',
+
+  // Share
+  'share.message': 'Эй, посмотри, что я слушаю на AstroTune!',
 
   // Countries
   'countries.count': '{{count}} стран с радиостанциями',

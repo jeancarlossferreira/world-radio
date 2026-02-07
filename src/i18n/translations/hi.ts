@@ -59,9 +59,12 @@ export const hi: TranslationStrings = {
   'action.shareNative': 'और विकल्प',
   'action.shareEmail': 'ईमेल',
   'action.shareWhatsApp': 'WhatsApp',
-  'action.shareTelegram': 'Telegram',
+  'action.shareTwitter': 'Twitter',
+  'action.shareFacebook': 'Facebook',
+  'action.shareInstagram': 'Instagram',
   'action.shareDiscord': 'Discord',
   'action.shareGoogleChat': 'Google Chat',
+  'action.stationWebsite': 'स्टेशन वेबसाइट',
 
   // Empty states
   'empty.noStationsFound': 'कोई स्टेशन नहीं मिला',
@@ -74,12 +77,21 @@ export const hi: TranslationStrings = {
   // Player
   'player.noStation': 'कोई स्टेशन चयनित नहीं',
   'player.connecting': 'कनेक्ट हो रहा है...',
+  'player.mute': 'म्यूट',
+  'player.unmute': 'अनम्यूट',
 
   // Settings
   'settings.title': 'सेटिंग्स',
   'settings.theme': 'थीम',
   'settings.language': 'भाषा',
-  'settings.mapTheme': 'मानचित्र शैली',
+  'settings.mapTheme':  'मानचित्र शैली',
+
+  // Sidebar
+  'sidebar.expand': 'मेनू विस्तारित करें',
+  'sidebar.collapse': 'मेनू संकुचित करें',
+
+  // Share
+  'share.message': 'अरे, देखो मैं AstroTune पर क्या सुन रहा हूँ!',
 
   // Countries
   'countries.count': '{{count}} देशों में रेडियो स्टेशन',
