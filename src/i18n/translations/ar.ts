@@ -12,6 +12,7 @@ export const ar: TranslationStrings = {
   'nav.map': 'الخريطة',
   'nav.favorites': 'المفضلة',
   'nav.history': 'السجل',
+  'nav.admin': 'إدارة',
 
   // Page titles
   'page.searchStations': 'بحث المحطات',

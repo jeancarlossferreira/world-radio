@@ -12,6 +12,7 @@ export const zh: TranslationStrings = {
   'nav.map': '地图',
   'nav.favorites': '收藏',
   'nav.history': '历史',
+  'nav.admin': '管理',
 
   // Page titles
   'page.searchStations': '搜索电台',

@@ -12,6 +12,7 @@ export const it: TranslationStrings = {
   'nav.map': 'Mappa',
   'nav.favorites': 'Preferiti',
   'nav.history': 'Cronologia',
+  'nav.admin': 'Admin',
 
   // Page titles
   'page.searchStations': 'Cerca Stazioni',

@@ -35,7 +35,8 @@ import { API_BASE, DEFAULT_PAGE_SIZE } from './constants';
  */
 async function apiFetch<T>(endpoint: string, params?: Record<string, string | number | boolean | undefined>): Promise<T> {
   // Build the full URL from base + endpoint
-  const url = new URL(`${API_BASE}${endpoint}`);
+  const base = API_BASE || window.location.origin;
+  const url = new URL(`${base}${endpoint}`);
 
   // Add query parameters, filtering out undefined/empty values
   if (params) {

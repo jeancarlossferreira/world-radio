@@ -12,6 +12,7 @@ export const hi: TranslationStrings = {
   'nav.map': 'मानचित्र',
   'nav.favorites': 'पसंदीदा',
   'nav.history': 'इतिहास',
+  'nav.admin': 'व्यवस्थापक',
 
   // Page titles
   'page.searchStations': 'स्टेशन खोजें',

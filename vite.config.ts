@@ -13,6 +13,16 @@ export default defineConfig({
   server: {
     allowedHosts: [
       'pulpiest-sepulchrally-marketta.ngrok-free.dev'
-    ]
+    ],
+    proxy: {
+      '/json': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    },
   }
 })

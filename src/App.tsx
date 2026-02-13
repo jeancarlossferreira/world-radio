@@ -11,6 +11,13 @@ import { CountryDetailPage } from '@/pages/CountryDetailPage';
 import { MapPage } from '@/pages/MapPage';
 import { FavoritesPage } from '@/pages/FavoritesPage';
 import { HistoryPage } from '@/pages/HistoryPage';
+import { AdminLayout } from '@/pages/admin/AdminLayout';
+import { AdminDashboard } from '@/pages/admin/AdminDashboard';
+import { AdminStations } from '@/pages/admin/AdminStations';
+import { AdminStationForm } from '@/pages/admin/AdminStationForm';
+import { AdminEtl } from '@/pages/admin/AdminEtl';
+import { AdminTags } from '@/pages/admin/AdminTags';
+import { AdminDig } from '@/pages/admin/AdminDig';
 
 function App() {
   return (
@@ -28,6 +35,15 @@ function App() {
               <Route path="/map" element={<MapPage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/history" element={<HistoryPage />} />
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<AdminDashboard />} />
+                <Route path="stations" element={<AdminStations />} />
+                <Route path="stations/new" element={<AdminStationForm />} />
+                <Route path="stations/:uuid/edit" element={<AdminStationForm />} />
+                <Route path="tags" element={<AdminTags />} />
+                <Route path="etl" element={<AdminEtl />} />
+                <Route path="dig" element={<AdminDig />} />
+              </Route>
             </Route>
           </Routes>
         </MapFocusProvider>

@@ -12,6 +12,7 @@ export const ja: TranslationStrings = {
   'nav.map': '地図',
   'nav.favorites': 'お気に入り',
   'nav.history': '履歴',
+  'nav.admin': '管理',
 
   // Page titles
   'page.searchStations': '放送局を検索',

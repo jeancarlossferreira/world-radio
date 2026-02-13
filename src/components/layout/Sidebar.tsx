@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Search, Globe, Map, Heart, Clock, ChevronLeft, ChevronRight, Settings } from 'lucide-react';
+import { Home, Search, Globe, Map, Heart, Clock, ChevronLeft, ChevronRight, Settings, Shield } from 'lucide-react';
 import { SettingsSection } from '@/components/ui/SettingsSection';
 import { useI18n } from '@/context/I18nContext';
 import type { TranslationKey } from '@/i18n/types';
@@ -11,6 +11,7 @@ const navItems: { to: string; icon: typeof Home; labelKey: TranslationKey }[] = 
   { to: '/map', icon: Map, labelKey: 'nav.map' },
   { to: '/favorites', icon: Heart, labelKey: 'nav.favorites' },
   { to: '/history', icon: Clock, labelKey: 'nav.history' },
+  { to: '/admin', icon: Shield, labelKey: 'nav.admin' },
 ];
 
 interface SidebarProps {

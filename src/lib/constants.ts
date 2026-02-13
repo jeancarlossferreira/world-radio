@@ -1,4 +1,4 @@
-export const API_BASE = 'https://de1.api.radio-browser.info';
+export const API_BASE = import.meta.env.VITE_API_BASE || '';
 
 export const STORAGE_KEYS = {
   FAVORITES: 'radio_favorites',

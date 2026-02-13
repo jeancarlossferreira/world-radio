@@ -94,6 +94,9 @@ export interface TranslationStrings {
   // Countries
   'countries.count': string;
   'stations.count': string;
+
+  // Admin
+  'nav.admin': string;
 }
 
 export type TranslationKey = keyof TranslationStrings;

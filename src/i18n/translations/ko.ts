@@ -12,6 +12,7 @@ export const ko: TranslationStrings = {
   'nav.map': '지도',
   'nav.favorites': '즐겨찾기',
   'nav.history': '기록',
+  'nav.admin': '관리',
 
   // Page titles
   'page.searchStations': '방송국 검색',

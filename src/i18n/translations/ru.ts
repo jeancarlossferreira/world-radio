@@ -12,6 +12,7 @@ export const ru: TranslationStrings = {
   'nav.map': 'Карта',
   'nav.favorites': 'Избранное',
   'nav.history': 'История',
+  'nav.admin': 'Админ',
 
   // Page titles
   'page.searchStations': 'Поиск Станций',
